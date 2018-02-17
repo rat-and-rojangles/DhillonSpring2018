@@ -45,6 +45,12 @@ public class Game : MonoBehaviour {
 		get { return m_highlightMaterial; }
 	}
 
+	[SerializeField]
+	private ThoughtBubble m_thoughtBubble;
+	public ThoughtBubble thoughtBubble {
+		get { return m_thoughtBubble; }
+	}
+
 	/// <summary>
 	/// Set Time.timeScale.
 	/// </summary>

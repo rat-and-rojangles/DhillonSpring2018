@@ -2,23 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OffscreenUIElement : MonoBehaviour, Initializable {
+public class OffscreenUIElement : MonoBehaviour {
 
 	public Vector2 offScreenPos;
 	public Vector2 onScreenPos;
 
-	private RectTransform rectTransform;
+	private RectTransform m_rectTransform;
+	protected RectTransform rectTransform {
+		get {
+			if (m_rectTransform == null) {
+				m_rectTransform = GetComponent<RectTransform> ();
+			}
+			return m_rectTransform;
+		}
+	}
 
 	public float transitionTime = 0.25f;
 	[Range (0f, 1f)]
 	public float screenDarkenFactor = 0.5f;
 
 	public InterpolationMethod interpolationMethod = InterpolationMethod.Quadratic;
-
-
-	public void Initialize () {
-		rectTransform = GetComponent<RectTransform> ();
-	}
 
 	void OnEnable () {
 		StopAllCoroutines ();
@@ -27,15 +30,17 @@ public class OffscreenUIElement : MonoBehaviour, Initializable {
 	}
 
 	void OnDisable () {
+		StopAllCoroutines ();
 		Game.staticRef.SetScreenDarkness (0f);
 	}
 
 	private IEnumerator EnterScreen () {
-		float timeRemaining = transitionTime;
+		float startTime = Time.realtimeSinceStartup;
+		float timeRemaining = startTime + transitionTime - Time.realtimeSinceStartup;
 		while (timeRemaining >= 0f) {
+			timeRemaining = startTime + transitionTime - Time.realtimeSinceStartup;
 			Game.staticRef.SetScreenDarkness ((1f - timeRemaining / transitionTime) * screenDarkenFactor);
 			rectTransform.anchoredPosition = Interpolation.Interpolate (onScreenPos, offScreenPos, timeRemaining / transitionTime, interpolationMethod);
-			timeRemaining -= Time.unscaledDeltaTime;
 			yield return null;
 		}
 	}

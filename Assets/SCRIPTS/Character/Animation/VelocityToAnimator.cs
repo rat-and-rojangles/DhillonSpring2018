@@ -8,29 +8,9 @@ public class VelocityToAnimator : MonoBehaviour {
 	public CharacterController characterController;
 	public PlayerCharacter playerCharacter;
 
-	private bool wasGroundedLastFrame;
-
-	void Start () {
-		wasGroundedLastFrame = characterController.isGrounded;
-	}
-
 	void Update () {
-		// animator.SetFloat ("LateralSpeed", characterController.velocity.x / playerCharacter.runSpeed);
-		// animator.SetFloat ("ForwardSpeed", characterController.velocity.z / playerCharacter.runSpeed);
-		// animator.SetBool ("Grounded", characterController.isGrounded);
-		// if (wasGroundedLastFrame != characterController.isGrounded) {
-		// 	if (characterController.isGrounded) {
-		// 		animator.SetTrigger ("Land");
-		// 	}
-		// 	else if (characterController.velocity.y > 0.01f) {
-		// 		animator.SetTrigger ("Jump");
-		// 	}
-		// }
-		// wasGroundedLastFrame = characterController.isGrounded;
-
-		animator.SetFloat ("LateralSpeed", characterController.velocity.x / playerCharacter.runSpeed);
-		animator.SetFloat ("ForwardSpeed", characterController.velocity.z / playerCharacter.runSpeed);
+		animator.SetFloat ("LateralSpeed", characterController.transform.InverseTransformDirection(characterController.velocity).x / playerCharacter.runSpeed);
+		animator.SetFloat ("ForwardSpeed", characterController.transform.InverseTransformDirection(characterController.velocity).z / playerCharacter.runSpeed);
 		animator.SetBool ("Grounded", characterController.isGrounded);
-		wasGroundedLastFrame = characterController.isGrounded;
 	}
 }

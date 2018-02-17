@@ -17,7 +17,12 @@ public class DaylightUIBar : MonoBehaviour {
 	private Text timerText;
 
 	private static string SecondsToTime (float seconds) {
-		return Mathf.FloorToInt (seconds / 60f).ToString () + ":" + Mathf.FloorToInt (seconds % 60f).ToString ();
+		string minutesString = Mathf.FloorToInt (seconds / 60f).ToString ();
+		string secondsString = Mathf.FloorToInt (seconds % 60f).ToString ();
+		if (secondsString.Length == 1) {
+			secondsString = "0" + secondsString;
+		}
+		return minutesString + ":" + secondsString;
 	}
 
 	[SerializeField]
