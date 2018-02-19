@@ -15,12 +15,34 @@ public class PlayerCharacter : MonoBehaviour {
 
 	private CharacterController characterController;
 
+	private PlayerSprint playerSprint;
+
+	private Energy m_energy;
+	/// <summary>
+	/// Dhillon's energy control
+	/// </summary>
+	public Energy energy {
+		get { return m_energy; }
+	}
+
 	void Awake () {
 		characterController = GetComponent<CharacterController> ();
+		playerSprint = GetComponent<PlayerSprint> ();
+		m_energy = GetComponent<Energy> ();
 	}
 
 	private float GetRunSpeedMultiplier () {
 		return Mathf.Lerp (runSpeed * 0.5f, runSpeed, timeRunning / timeToMaxSpeed);
+	}
+
+	private Vector2 ModifyInputVectorForSprint (Vector2 inputVector) {
+		Vector2 normalized = inputVector.normalized;
+		if (playerSprint.isSprinting && normalized.y > 0f) {
+			return new Vector2 (normalized.x, normalized.y * 2f);
+		}
+		else {
+			return normalized;
+		}
 	}
 
 	void Update () {
@@ -32,7 +54,8 @@ public class PlayerCharacter : MonoBehaviour {
 			timeRunning = 0f;
 		}
 		gravity += Physics.gravity * gravityScale * Time.deltaTime;
-		characterController.Move (((transform.forward * inputVector.y + transform.right * inputVector.x).normalized * GetRunSpeedMultiplier () + gravity) * Time.deltaTime);
+		inputVector = ModifyInputVectorForSprint (inputVector);
+		characterController.Move (((transform.forward * inputVector.y + transform.right * inputVector.x) * GetRunSpeedMultiplier () + gravity) * Time.deltaTime);
 		if (characterController.isGrounded) {
 			gravity = Vector3.zero;
 			if (Input.GetButtonDown ("Jump")) {
