@@ -2595,8 +2595,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_maxEnergy: 100
-  startingEnergyRatio: 0
-  DEBUG_energyRatio: 0
+  startingEnergyRatio: 0.425
+  DEBUG_energyRatio: 0.48
 --- !u!1 &1215867954
 GameObject:
   m_ObjectHideFlags: 0
