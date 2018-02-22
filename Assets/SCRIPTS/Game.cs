@@ -28,6 +28,15 @@ public class Game : MonoBehaviour {
 	}
 
 	[SerializeField]
+	private RectTransform m_mainCanvasRect;
+	/// <summary>
+	/// RectTransform for the main UI canvas.
+	/// </summary>
+	public RectTransform mainCanvasRect {
+		get { return m_mainCanvasRect; }
+	}
+
+	[SerializeField]
 	private Daylight m_daylight;
 	public Daylight daylight {
 		get { return m_daylight; }

@@ -1394,7 +1394,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -50}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &435606238
@@ -1595,7 +1595,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e81a100f44abcab4782b994523aa041d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvasRect: {fileID: 1845967717}
 --- !u!1 &625962478
 GameObject:
   m_ObjectHideFlags: 0
@@ -2625,6 +2624,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d6d140fa6810a84e8fda901d91c49ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_mainCanvasRect: {fileID: 1845967717}
   m_daylight: {fileID: 1215867957}
   m_screenInteractPromptText: {fileID: 587610999}
   m_highlightMaterial: {fileID: 2100000, guid: 50190e2a81874844d8728c9898fa42d6, type: 2}
@@ -3738,7 +3738,7 @@ GameObject:
   - component: {fileID: 1845967714}
   m_Layer: 5
   m_Name: Canvas
-  m_TagString: Untagged
+  m_TagString: MainCanvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
