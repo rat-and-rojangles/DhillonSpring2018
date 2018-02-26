@@ -1,0 +1,183 @@
+fileFormatVersion: 2
+guid: 85570f55d677a0c4e81e95735da708cd
+timeCreated: 1519331449
+licenseType: Free
+ModelImporter:
+  serializedVersion: 21
+  fileIDToRecycleName:
+    100000: basic_rig
+    100002: basic_rig Footsteps
+    100004: basic_rig Head
+    100006: basic_rig Head_end
+    100008: basic_rig L Calf
+    100010: basic_rig L Clavicle
+    100012: basic_rig L Finger0
+    100014: basic_rig L Finger0_end
+    100016: basic_rig L Finger1
+    100018: basic_rig L Finger1_end
+    100020: basic_rig L Finger2
+    100022: basic_rig L Finger2_end
+    100024: basic_rig L Foot
+    100026: basic_rig L Forearm
+    100028: basic_rig L Hand
+    100030: basic_rig L Thigh
+    100032: basic_rig L Toe0
+    100034: basic_rig L Toe0_end
+    100036: basic_rig L UpperArm
+    100038: basic_rig Neck
+    100040: basic_rig Pelvis
+    100042: basic_rig R Calf
+    100044: basic_rig R Clavicle
+    100046: basic_rig R Finger0
+    100048: basic_rig R Finger0_end
+    100050: basic_rig R Finger1
+    100052: basic_rig R Finger1_end
+    100054: basic_rig R Finger2
+    100056: basic_rig R Finger2_end
+    100058: basic_rig R Foot
+    100060: basic_rig R Forearm
+    100062: basic_rig R Hand
+    100064: basic_rig R Thigh
+    100066: basic_rig R Toe0
+    100068: basic_rig R Toe0_end
+    100070: basic_rig Spine
+    100072: basic_rig Spine1
+    100074: basic_rig UpperArm
+    100076: Bip001 HeadNub
+    100078: Bip001 L Finger0Nub
+    100080: Bip001 L Finger1Nub
+    100082: Bip001 L Finger2Nub
+    100084: Bip001 L Toe0Nub
+    100086: Bip001 R Finger0Nub
+    100088: Bip001 R Finger1Nub
+    100090: Bip001 R Finger2Nub
+    100092: Bip001 R Toe0Nub
+    100094: C_man_1_FBX2013
+    100096: //RootNode
+    400000: basic_rig
+    400002: basic_rig Footsteps
+    400004: basic_rig Head
+    400006: basic_rig Head_end
+    400008: basic_rig L Calf
+    400010: basic_rig L Clavicle
+    400012: basic_rig L Finger0
+    400014: basic_rig L Finger0_end
+    400016: basic_rig L Finger1
+    400018: basic_rig L Finger1_end
+    400020: basic_rig L Finger2
+    400022: basic_rig L Finger2_end
+    400024: basic_rig L Foot
+    400026: basic_rig L Forearm
+    400028: basic_rig L Hand
+    400030: basic_rig L Thigh
+    400032: basic_rig L Toe0
+    400034: basic_rig L Toe0_end
+    400036: basic_rig L UpperArm
+    400038: basic_rig Neck
+    400040: basic_rig Pelvis
+    400042: basic_rig R Calf
+    400044: basic_rig R Clavicle
+    400046: basic_rig R Finger0
+    400048: basic_rig R Finger0_end
+    400050: basic_rig R Finger1
+    400052: basic_rig R Finger1_end
+    400054: basic_rig R Finger2
+    400056: basic_rig R Finger2_end
+    400058: basic_rig R Foot
+    400060: basic_rig R Forearm
+    400062: basic_rig R Hand
+    400064: basic_rig R Thigh
+    400066: basic_rig R Toe0
+    400068: basic_rig R Toe0_end
+    400070: basic_rig Spine
+    400072: basic_rig Spine1
+    400074: basic_rig UpperArm
+    400076: Bip001 HeadNub
+    400078: Bip001 L Finger0Nub
+    400080: Bip001 L Finger1Nub
+    400082: Bip001 L Finger2Nub
+    400084: Bip001 L Toe0Nub
+    400086: Bip001 R Finger0Nub
+    400088: Bip001 R Finger1Nub
+    400090: Bip001 R Finger2Nub
+    400092: Bip001 R Toe0Nub
+    400094: C_man_1_FBX2013
+    400096: //RootNode
+    4300000: C_man_1_FBX2013
+    9500000: //RootNode
+    13700000: C_man_1_FBX2013
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
