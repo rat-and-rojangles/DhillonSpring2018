@@ -70,6 +70,9 @@ public class Game : MonoBehaviour {
 	public void LockCursor () {
 		Cursor.lockState = CursorLockMode.Locked;
 	}
+	public void UnlockCursor () {
+		Cursor.lockState = CursorLockMode.None;
+	}
 
 	[SerializeField]
 	private UnityEngine.UI.Image m_darknessImage;
