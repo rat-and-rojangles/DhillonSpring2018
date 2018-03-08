@@ -31,7 +31,7 @@ public abstract class Gazeable : MonoBehaviour {
 			OnGazeEnter ();
 		}
 	}
-	private void OnMouseExit () {
+	protected void OnMouseExit () {
 		if (currentlyInGaze) {
 			p_currentlyInGaze = false;
 			p_renderer.materials = p_originalMaterials;

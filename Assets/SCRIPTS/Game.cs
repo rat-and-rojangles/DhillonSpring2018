@@ -60,6 +60,12 @@ public class Game : MonoBehaviour {
 		get { return m_thoughtBubble; }
 	}
 
+	[SerializeField]
+	private Backpack m_backpack;
+	public Backpack backpack {
+		get { return m_backpack; }
+	}
+
 	/// <summary>
 	/// Set Time.timeScale.
 	/// </summary>

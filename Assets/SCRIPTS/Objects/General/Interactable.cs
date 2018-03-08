@@ -23,4 +23,9 @@ public abstract class Interactable : Gazeable {
 	protected override void OnGazeExit () {
 		Game.staticRef.screenInteractPromptText.SetTarget (null);
 	}
+
+	private void OnDisable () {
+		OnMouseExit ();
+		OnGazeExit ();
+	}
 }
