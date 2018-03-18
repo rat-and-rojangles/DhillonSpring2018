@@ -91,6 +91,12 @@ public class Game : MonoBehaviour {
 	}
 
 	[SerializeField]
+	private ShortMessageGenerator shortMessageGenerator;
+	public void DisplayShortMessage (string message) {
+		shortMessageGenerator.GenerateShortMessage (message);
+	}
+
+	[SerializeField]
 	private PlayerCharacter m_player;
 	public PlayerCharacter player {
 		get { return m_player; }

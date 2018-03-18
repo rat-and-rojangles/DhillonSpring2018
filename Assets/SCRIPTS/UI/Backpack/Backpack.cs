@@ -49,6 +49,7 @@ public class Backpack : OffscreenUIElement, Initializable {
 		else {
 			item.gameObject.SetActive (false);
 			ownedItems [desiredIndex] = item;
+			Game.staticRef.DisplayShortMessage ("Collected!");
 			UpdateButtons ();
 		}
 	}
