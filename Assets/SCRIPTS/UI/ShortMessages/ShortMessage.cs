@@ -32,11 +32,11 @@ public class ShortMessage : MonoBehaviour {
 	public float ascensionHeight = 222f;
 
 	private IEnumerator Ascend () {
-		float startTime = Time.time;
+		float startTime = Time.realtimeSinceStartup;
 		Color oldColor = text.color;
 		Color newColor = oldColor.ChangedAlpha (0f);
-		while (Time.time < startTime + ascensionDuration) {
-			float ratio = (Time.time - startTime) / ascensionDuration;
+		while (Time.realtimeSinceStartup < startTime + ascensionDuration) {
+			float ratio = (Time.realtimeSinceStartup - startTime) / ascensionDuration;
 			rectTransform.anchoredPosition = Interpolation.Interpolate (Vector2.zero, Vector2.up * ascensionHeight, ratio, InterpolationMethod.Quadratic);
 			text.color = Interpolation.Interpolate (oldColor, newColor, ratio, InterpolationMethod.Quadratic);
 			yield return null;

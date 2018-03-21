@@ -20,7 +20,16 @@ public class ThoughtBubble : OffscreenUIElement {
 
 	private bool disappearing = false;
 	void Update () {
-		if (rolloutText.complete && Input.GetKeyDown (closeKey) && !disappearing) {
+		if (Input.GetKeyDown (closeKey)) {
+			CloseThought ();
+		}
+	}
+
+	/// <summary>
+	/// Attempts to close the thought bubble. Does nothing if the request to close is untimely.
+	/// </summary>
+	public void CloseThought () {
+		if (rolloutText.complete && !disappearing) {
 			disappearing = true;
 			StartCoroutine (ExitScreen ());
 		}
@@ -35,13 +44,5 @@ public class ThoughtBubble : OffscreenUIElement {
 			yield return null;
 		}
 		gameObject.SetActive (false);
-	}
-
-	[SerializeField]
-	[TextArea (3, 10)]
-	private string hackText;
-	[ContextMenu ("Trigger Thought")]
-	private void TriggerThought () {
-		SetMessage (hackText);
 	}
 }

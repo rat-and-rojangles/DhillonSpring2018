@@ -43,27 +43,9 @@ public class Energy : MonoBehaviour {
 	}
 
 	/// <summary>
-	/// Increase Dhillon's energy by this much.
+	/// Increase Dhillon's energy by this much. Use a negative number to decrease.
 	/// </summary>
 	public void IncreaseEnergy (float increaseAmount) {
 		currentEnergy += increaseAmount;
 	}
-
-	/// <summary>
-	/// Reduce Dhillon's energy by this much.
-	/// </summary>
-	public void DecreaseEnergy (float decreaseAmount) {
-		currentEnergy += decreaseAmount;
-	}
-
-#if UNITY_EDITOR
-	[SerializeField]
-	[Range (0f, 1f)]
-	private float DEBUG_energyRatio;
-
-	void Update () {
-		currentEnergy = maxEnergy * DEBUG_energyRatio;
-	}
-#endif
-
 }
