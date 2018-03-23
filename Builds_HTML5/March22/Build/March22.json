@@ -1,0 +1,13 @@
+{
+"companyName": "DefaultCompany",
+"productName": "Dhillon",
+"dataUrl": "March22.data.unityweb",
+"asmCodeUrl": "March22.asm.code.unityweb",
+"asmMemoryUrl": "March22.asm.memory.unityweb",
+"asmFrameworkUrl": "March22.asm.framework.unityweb",
+"TOTAL_MEMORY": 268435456,
+"graphicsAPI": ["WebGL 2.0", "WebGL 1.0"],
+"webglContextAttributes": {"preserveDrawingBuffer": false},
+"splashScreenStyle": "Dark",
+"backgroundColor": "#231F20"
+}
