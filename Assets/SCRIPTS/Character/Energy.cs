@@ -19,6 +19,9 @@ public class Energy : MonoBehaviour {
 	[SerializeField]
 	private float startingEnergyRatio;
 
+	[SerializeField]
+	private UIBar barToUpdate;
+
 	private float m_currentEnergy;
 	/// <summary>
 	/// Current energy value. Assignment auto clamps.
@@ -40,6 +43,12 @@ public class Energy : MonoBehaviour {
 
 	void Start () {
 		m_currentEnergy = maxEnergy * startingEnergyRatio;
+	}
+
+	void Update () {
+		if (barToUpdate != null) {
+			barToUpdate.ratio = energyRatio;
+		}
 	}
 
 	/// <summary>
