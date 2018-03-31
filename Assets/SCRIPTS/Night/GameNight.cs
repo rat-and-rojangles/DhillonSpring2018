@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class GameNight : MonoBehaviour {
 
-	private static Game m_staticRef;
+	private static GameNight m_staticRef;
 	/// <summary>
 	/// Return the Game of the active scene.
 	/// </summary>
-	public static Game staticRef {
+	public static GameNight staticRef {
 		get { return m_staticRef; }
 	}
 
@@ -28,23 +28,38 @@ public class GameNight : MonoBehaviour {
 	}
 
 	[SerializeField]
-	private RectTransform m_mainCanvasRect;
-	/// <summary>
-	/// RectTransform for the main UI canvas.
-	/// </summary>
-	public RectTransform mainCanvasRect {
-		get { return m_mainCanvasRect; }
-	}
-
-	[SerializeField]
-	private ShortMessageGenerator shortMessageGenerator;
-	public void DisplayShortMessage (string message) {
-		shortMessageGenerator.GenerateShortMessage (message);
-	}
-
-	[SerializeField]
 	private HeroCharacter m_player;
 	public HeroCharacter player {
 		get { return m_player; }
+	}
+
+	[SerializeField]
+	private Energy m_playerEnergy;
+	public Energy playerEnergy {
+		get { return m_playerEnergy; }
+	}
+
+	[SerializeField]
+	private CompleteCamera m_completeCameraMain;
+	public CompleteCamera completeCameraMain {
+		get {
+			return m_completeCameraMain;
+		}
+	}
+
+	[SerializeField]
+	private SoundLibrary m_soundLibrary;
+	public SoundLibrary soundLibrary{
+		get{
+			return  m_soundLibrary;
+		}
+	}
+
+	[SerializeField]
+	private NightScore m_score;
+	public NightScore score{
+		get{
+			return  m_score;
+		}
 	}
 }

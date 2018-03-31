@@ -15,11 +15,11 @@ TagManager:
   - 
   - 
   - Character
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Treasure
+  - Bullet
+  - Enemy
+  - Overlay
+  - Ghost
   - 
   - 
   - 

@@ -6,6 +6,24 @@ using UnityEngine.SceneManagement;
 public static class Utility {
 
 	/// <summary>
+	/// Random number from -1 to 1, inclusive.
+	/// </summary>
+	/// <returns></returns>
+	public static float randomMagnitude {
+		get {
+			return Random.Range (-1f, 1f);
+		}
+	}
+
+	public static Vector2 RadianToVector2 (float radian) {
+		return new Vector2 (Mathf.Cos (radian), Mathf.Sin (radian));
+	}
+
+	public static Vector2 DegreeToVector2 (float degree) {
+		return RadianToVector2 (degree * Mathf.Deg2Rad);
+	}
+
+	/// <summary>
 	/// Returns the same color with a different transparency value. (0 to 1)
 	/// </summary>
 	public static Color ChangedAlpha (this Color c, float newAlphaValue) {

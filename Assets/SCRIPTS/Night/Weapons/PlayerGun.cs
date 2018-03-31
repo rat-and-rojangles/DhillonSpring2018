@@ -3,36 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerGun : MonoBehaviour {
+	public float recoilScale = 3f;
 
 	public float leadMinDistance = 10f;
 	public float leadMaxDistance = 20f;
 
 	private Vector2 camLead = Vector2.zero;
 
-
-	private Camera m_mainCamera = null;
-	private Camera mainCamera {
-		get {
-			if (m_mainCamera == null) {
-				m_mainCamera = Camera.main;
-			}
-			return m_mainCamera;
-		}
+	[SerializeField]
+	private GameObject bulletPrefab;
+	private void Shoot () {
+		Instantiate (bulletPrefab).GetComponent<Bullet> ().Initialize (transform.eulerAngles.z);
 	}
-
-	private LooseFollow m_looseFollow = null;
-	private LooseFollow looseFollow {
-		get {
-			if (m_looseFollow == null) {
-				m_looseFollow = mainCamera.GetComponent<LooseFollow> ();
-			}
-			return m_looseFollow;
-		}
-	}
-
 
 	void Update () {
-		Vector3 mouseWorldPoint = mainCamera.ScreenToWorldPoint (Input.mousePosition + Vector3.forward * (transform.position.z - mainCamera.transform.position.z));
+		if (Input.GetMouseButtonDown (0)) {
+			Shoot ();
+			GameNight.staticRef.player.rigidbody2D.velocity += Utility.DegreeToVector2 (transform.eulerAngles.z + 180f).normalized * recoilScale;
+			GameNight.staticRef.playerEnergy.IncreaseEnergy (-1f);
+			GameNight.staticRef.completeCameraMain.camShake.Shake (0.5f, 0.1f);
+			SoundPlayer.PlayOneShot (GameNight.staticRef.soundLibrary.gunshot, 2f);
+		}
+
+		Vector3 mouseWorldPoint = GameNight.staticRef.completeCameraMain.camera.ScreenToWorldPoint (Input.mousePosition + Vector3.forward * (transform.position.z - GameNight.staticRef.completeCameraMain.camera.transform.position.z));
 		Vector3 diff = mouseWorldPoint - transform.position;
 		diff.z = 0f;
 
@@ -49,6 +42,6 @@ public class PlayerGun : MonoBehaviour {
 			camLead = Vector2.zero;
 		}
 
-		looseFollow.offset = camLead;
+		GameNight.staticRef.completeCameraMain.looseFollow.offset = camLead;
 	}
 }

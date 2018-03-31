@@ -3,11 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class HeroCharacter : MonoBehaviour {
+
 	[SerializeField]
 	private LayerMask groundMask;
 
 	private ControlCharacter controller;
-	private new Rigidbody2D rigidbody;
+	private Rigidbody2D m_rigidbody2D;
+	public new Rigidbody2D rigidbody2D {
+		get {
+			if (m_rigidbody2D == null) {
+				m_rigidbody2D = GetComponent<Rigidbody2D> ();
+			}
+			return m_rigidbody2D;
+		}
+	}
 	private new BoxCollider2D collider;
 
 	public float timeSinceLastJump = 0f;
@@ -30,7 +39,7 @@ public class HeroCharacter : MonoBehaviour {
 
 	public float runSpeed = 1f;
 	public float jumpHeight = 4f;
-	public int numberOfJumps = 2;
+	public int extraJumps = 1;
 	private int remainingJumps = 0;
 
 	/// <summary>
@@ -45,7 +54,7 @@ public class HeroCharacter : MonoBehaviour {
 	}
 	private float derivedJumpVelocity {
 		get {
-			float maxJumpVel = Mathf.Sqrt (2f * jumpHeight * -Physics2D.gravity.y * rigidbody.gravityScale);
+			float maxJumpVel = Mathf.Sqrt (2f * jumpHeight * -Physics2D.gravity.y * rigidbody2D.gravityScale);
 			if (weakened) {
 				maxJumpVel *= 0.75f;
 			}
@@ -54,7 +63,7 @@ public class HeroCharacter : MonoBehaviour {
 	}
 
 	public Vector2 velocity {
-		get { return rigidbody.velocity; }
+		get { return rigidbody2D.velocity; }
 	}
 
 	public bool dead {
@@ -69,7 +78,6 @@ public class HeroCharacter : MonoBehaviour {
 
 		spriteRenderer = GetComponent<SpriteRenderer> ();
 		collider = GetComponent<BoxCollider2D> ();
-		rigidbody = GetComponent<Rigidbody2D> ();
 		groundCheckPointLeftLocal = collider.offset + Vector2.down * collider.size.y * 0.55f + Vector2.left * collider.size.x * 0.5f;
 		groundCheckPointRightLocal = collider.offset + Vector2.down * collider.size.y * 0.55f + Vector2.right * collider.size.x * 0.5f;
 	}
@@ -81,30 +89,32 @@ public class HeroCharacter : MonoBehaviour {
 
 	void FixedUpdate () {
 		if (grounded) {
-			remainingJumps = numberOfJumps - 1;
+			remainingJumps = extraJumps;
 		}
 
 		if (actions.moveDirection == 0) {
-			rigidbody.SetVelocity (new Vector2 (Mathf.Lerp (velocity.x, 0f, 5f * Time.fixedDeltaTime), velocity.y));
+			rigidbody2D.SetVelocity (new Vector2 (Mathf.Lerp (velocity.x, 0f, 5f * Time.fixedDeltaTime), velocity.y));
 		}
 		else {
-			rigidbody.SetVelocity (new Vector2 (derivedRunSpeed * actions.moveDirection, velocity.y));
+			rigidbody2D.SetVelocity (new Vector2 (derivedRunSpeed * actions.moveDirection, velocity.y));
 		}
 
 		if (actions.jump) {
 			if (grounded) {
 				Jump ();
+				SoundPlayer.PlayOneShot (GameNight.staticRef.soundLibrary.jump1);
 			}
 			else if (remainingJumps > 0) {
 				remainingJumps--;
 				Jump ();
+				SoundPlayer.PlayOneShot (GameNight.staticRef.soundLibrary.jump2);
 			}
 		}
 		actions = FrameAction.NEUTRAL;
 	}
 
 	private void Jump () {
-		rigidbody.SetVelocity (new Vector2 (velocity.x, derivedJumpVelocity));
+		rigidbody2D.SetVelocity (new Vector2 (velocity.x, derivedJumpVelocity));
 		timeSinceLastJump = 0f;
 	}
 }
