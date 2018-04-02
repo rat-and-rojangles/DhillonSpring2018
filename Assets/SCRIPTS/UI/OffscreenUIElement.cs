@@ -18,8 +18,6 @@ public class OffscreenUIElement : MonoBehaviour {
 	}
 
 	public float transitionTime = 0.25f;
-	[Range (0f, 1f)]
-	public float screenDarkenFactor = 0.5f;
 
 	public InterpolationMethod interpolationMethod = InterpolationMethod.Quadratic;
 
@@ -31,7 +29,6 @@ public class OffscreenUIElement : MonoBehaviour {
 
 	void OnDisable () {
 		StopAllCoroutines ();
-		Game.staticRef.SetScreenDarkness (0f);
 	}
 
 	private IEnumerator EnterScreen () {
@@ -39,7 +36,6 @@ public class OffscreenUIElement : MonoBehaviour {
 		float timeRemaining = startTime + transitionTime - Time.realtimeSinceStartup;
 		while (timeRemaining >= 0f) {
 			timeRemaining = startTime + transitionTime - Time.realtimeSinceStartup;
-			Game.staticRef.SetScreenDarkness ((1f - timeRemaining / transitionTime) * screenDarkenFactor);
 			rectTransform.anchoredPosition = Interpolation.Interpolate (onScreenPos, offScreenPos, timeRemaining / transitionTime, interpolationMethod);
 			yield return null;
 		}

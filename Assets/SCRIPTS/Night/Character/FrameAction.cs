@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// All of the things a player can do per frame.
 /// </summary>
-public struct FrameAction {
+public class FrameAction {
 	public int moveDirection;
 	public bool jump;
 
@@ -17,18 +17,27 @@ public struct FrameAction {
 	/// <summary>
 	/// Overwrites movements, ORs jump
 	/// </summary>
+	public void CombineWith (FrameAction other) {
+		moveDirection = other.moveDirection;
+		jump = jump || other.jump;
+	}
+
+	/// <summary>
+	/// Sets this to a neutral action. No movement, no jump.
+	/// </summary>
+	public void Clear () {
+		moveDirection = 0;
+		jump = false;
+	}
+
+	/// <summary>
+	/// Overwrites movements, ORs jump
+	/// </summary>
 	public FrameAction Combined (FrameAction other) {
 		return new FrameAction (other.moveDirection, jump || other.jump);
 	}
 
-	private static FrameAction m_NEUTRAL = new FrameAction (0, false);
 	public static FrameAction NEUTRAL {
-		get { return m_NEUTRAL; }
+		get { return new FrameAction (0, false); }
 	}
-
-	// /// <summary>
-	// /// Gun angle
-	// /// </summary>
-	// public float angle;
-	// public bool shoot;
 }

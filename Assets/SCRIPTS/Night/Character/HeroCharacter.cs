@@ -7,7 +7,6 @@ public class HeroCharacter : MonoBehaviour {
 	[SerializeField]
 	private LayerMask groundMask;
 
-	private ControlCharacter controller;
 	private Rigidbody2D m_rigidbody2D;
 	public new Rigidbody2D rigidbody2D {
 		get {
@@ -19,8 +18,6 @@ public class HeroCharacter : MonoBehaviour {
 	}
 	private new BoxCollider2D collider;
 
-	public float timeSinceLastJump = 0f;
-
 	private Vector2 groundCheckPointLeftLocal;
 	private Vector2 groundCheckPointRightLocal;
 	public bool grounded {
@@ -31,11 +28,11 @@ public class HeroCharacter : MonoBehaviour {
 		}
 	}
 
-	private SpriteRenderer spriteRenderer;
-	public Color color {
-		get { return spriteRenderer.color; }
-		set { spriteRenderer.color = value; }
+	private enum MovementType {
+		Normal, Stunned, Dashing
 	}
+
+	private SpriteRenderer spriteRenderer;
 
 	public float runSpeed = 1f;
 	public float jumpHeight = 4f;
@@ -70,12 +67,16 @@ public class HeroCharacter : MonoBehaviour {
 		get { return !enabled; }
 	}
 
-	private FrameAction actions;
+	public FrameAction frameAction;
+
+	private void UpdateFrameAction () {
+		FrameAction thisFrame = new FrameAction (Mathf.RoundToInt (Input.GetAxis ("Horizontal")), Input.GetButtonDown ("Jump") || (Input.GetButtonDown ("Vertical") && Input.GetAxis ("Vertical") > 0f));
+		frameAction.CombineWith (thisFrame);
+	}
 
 
 	void Start () {
-		controller = new ControlCharacterHuman ();
-
+		frameAction = FrameAction.NEUTRAL;
 		spriteRenderer = GetComponent<SpriteRenderer> ();
 		collider = GetComponent<BoxCollider2D> ();
 		groundCheckPointLeftLocal = collider.offset + Vector2.down * collider.size.y * 0.55f + Vector2.left * collider.size.x * 0.5f;
@@ -83,8 +84,7 @@ public class HeroCharacter : MonoBehaviour {
 	}
 
 	void Update () {
-		timeSinceLastJump += Time.deltaTime;
-		actions = actions.Combined (controller.GetActions ());
+		UpdateFrameAction ();
 	}
 
 	void FixedUpdate () {
@@ -92,14 +92,14 @@ public class HeroCharacter : MonoBehaviour {
 			remainingJumps = extraJumps;
 		}
 
-		if (actions.moveDirection == 0) {
+		if (frameAction.moveDirection == 0) {
 			rigidbody2D.SetVelocity (new Vector2 (Mathf.Lerp (velocity.x, 0f, 5f * Time.fixedDeltaTime), velocity.y));
 		}
 		else {
-			rigidbody2D.SetVelocity (new Vector2 (derivedRunSpeed * actions.moveDirection, velocity.y));
+			rigidbody2D.SetVelocity (new Vector2 (derivedRunSpeed * frameAction.moveDirection, velocity.y));
 		}
 
-		if (actions.jump) {
+		if (frameAction.jump) {
 			if (grounded) {
 				Jump ();
 				SoundPlayer.PlayOneShot (GameNight.staticRef.soundLibrary.jump1);
@@ -110,11 +110,10 @@ public class HeroCharacter : MonoBehaviour {
 				SoundPlayer.PlayOneShot (GameNight.staticRef.soundLibrary.jump2);
 			}
 		}
-		actions = FrameAction.NEUTRAL;
+		frameAction.Clear ();
 	}
 
 	private void Jump () {
 		rigidbody2D.SetVelocity (new Vector2 (velocity.x, derivedJumpVelocity));
-		timeSinceLastJump = 0f;
 	}
 }
