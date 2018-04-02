@@ -8,4 +8,5 @@ public class SoundLibrary : MonoBehaviour {
 	public AudioClip gunshot;
 	public AudioClip powerup;
 	public AudioClip oof;
+	public AudioClip hurt;
 }

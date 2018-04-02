@@ -4,8 +4,17 @@ using UnityEngine;
 
 public class HeroCharacter : MonoBehaviour {
 
+	public float bulletEnergyCost = 1f;
+	public float hitDamage = 2f;
+
+	public float stunTime = 1f;
+	private float stunTimeRemaining = 0f;
+
 	[SerializeField]
 	private LayerMask groundMask;
+
+	private const int NORMAL_LAYER = 13;
+	private const int STUNNED_LAYER = 11;
 
 	private Rigidbody2D m_rigidbody2D;
 	public new Rigidbody2D rigidbody2D {
@@ -17,6 +26,7 @@ public class HeroCharacter : MonoBehaviour {
 		}
 	}
 	private new BoxCollider2D collider;
+	private MeshRenderer meshRenderer;
 
 	private Vector2 groundCheckPointLeftLocal;
 	private Vector2 groundCheckPointRightLocal;
@@ -28,6 +38,7 @@ public class HeroCharacter : MonoBehaviour {
 		}
 	}
 
+	private MovementType movementType = MovementType.Normal;
 	private enum MovementType {
 		Normal, Stunned, Dashing
 	}
@@ -79,6 +90,7 @@ public class HeroCharacter : MonoBehaviour {
 		frameAction = FrameAction.NEUTRAL;
 		spriteRenderer = GetComponent<SpriteRenderer> ();
 		collider = GetComponent<BoxCollider2D> ();
+		meshRenderer = GetComponent<MeshRenderer> ();
 		groundCheckPointLeftLocal = collider.offset + Vector2.down * collider.size.y * 0.55f + Vector2.left * collider.size.x * 0.5f;
 		groundCheckPointRightLocal = collider.offset + Vector2.down * collider.size.y * 0.55f + Vector2.right * collider.size.x * 0.5f;
 	}
@@ -92,6 +104,39 @@ public class HeroCharacter : MonoBehaviour {
 			remainingJumps = extraJumps;
 		}
 
+		switch (movementType) {
+			case MovementType.Normal:
+				MoveNormal ();
+				break;
+			case MovementType.Stunned:
+
+				// meshRenderer.material.color = meshRenderer.material.color.ChangedAlpha (Mathf.Lerp (0.25f, 0.75f, (Mathf.Sin ((Time.time) / stunTime * 2f * 0.5f * Mathf.PI) + 1f) * 0.5f));
+				stunTimeRemaining -= Time.deltaTime;
+				if (stunTimeRemaining <= stunTime * 0.75f) {
+					// weakened = false;
+					MoveNormal ();
+				}
+
+				if (stunTimeRemaining <= 0f) {
+					movementType = MovementType.Normal;
+					meshRenderer.material.color = meshRenderer.material.color.ChangedAlpha (1f);
+					gameObject.layer = NORMAL_LAYER;
+					weakened = false;
+				}
+				break;
+			case MovementType.Dashing:
+				MoveNormal ();
+				break;
+		}
+
+		frameAction.Clear ();
+	}
+
+	private void Jump () {
+		rigidbody2D.SetVelocity (new Vector2 (velocity.x, derivedJumpVelocity));
+	}
+
+	private void MoveNormal () {
 		if (frameAction.moveDirection == 0) {
 			rigidbody2D.SetVelocity (new Vector2 (Mathf.Lerp (velocity.x, 0f, 5f * Time.fixedDeltaTime), velocity.y));
 		}
@@ -110,10 +155,21 @@ public class HeroCharacter : MonoBehaviour {
 				SoundPlayer.PlayOneShot (GameNight.staticRef.soundLibrary.jump2);
 			}
 		}
-		frameAction.Clear ();
 	}
 
-	private void Jump () {
-		rigidbody2D.SetVelocity (new Vector2 (velocity.x, derivedJumpVelocity));
+	void OnCollisionEnter2D (Collision2D other) {
+		Enemy enemy = other.gameObject.GetComponent<Enemy> ();
+		if (enemy != null) {
+			GameNight.staticRef.playerEnergy.IncreaseEnergy (-hitDamage);
+			GameNight.staticRef.completeCameraMain.camShake.Shake (0.25f, 0.5f);
+			meshRenderer.material.color = meshRenderer.material.color.ChangedAlpha (0.25f);
+			SoundPlayer.PlayOneShot (GameNight.staticRef.soundLibrary.hurt);
+			movementType = MovementType.Stunned;
+			gameObject.layer = STUNNED_LAYER;
+			Vector2 stunFling = (transform.position - other.gameObject.transform.position).normalized;
+			stunFling.y = 1f;
+			rigidbody2D.velocity = stunFling * 15f;
+			stunTimeRemaining = stunTime;
+		}
 	}
 }

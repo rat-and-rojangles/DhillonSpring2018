@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - MainCanvas
+  - Bed
+  - Friend
   layers:
   - Default
   - TransparentFX
@@ -14,13 +16,13 @@ TagManager:
   - UI
   - 
   - 
-  - Character
+  - Ghost
   - Treasure
   - Bullet
-  - Enemy
+  - CharacterStunned
   - Overlay
-  - Ghost
-  - 
+  - Player
+  - Enemy
   - 
   - 
   - 

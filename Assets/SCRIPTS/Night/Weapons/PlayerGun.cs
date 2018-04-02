@@ -15,15 +15,12 @@ public class PlayerGun : MonoBehaviour {
 	public void Shoot () {
 		Instantiate (bulletPrefab).GetComponent<Bullet> ().Initialize (transform.eulerAngles.z);
 		GameNight.staticRef.player.rigidbody2D.velocity += Utility.DegreeToVector2 (transform.eulerAngles.z + 180f).normalized * recoilScale;
-		GameNight.staticRef.playerEnergy.IncreaseEnergy (-1f);
+		GameNight.staticRef.playerEnergy.IncreaseEnergy (-GameNight.staticRef.player.bulletEnergyCost);
 		GameNight.staticRef.completeCameraMain.camShake.Shake (0.5f, 0.1f);
 		SoundPlayer.PlayOneShot (GameNight.staticRef.soundLibrary.gunshot, 2f);
 	}
 
 	void Update () {
-		// if (Input.GetMouseButtonDown (0)) {
-		// 	Shoot ();
-		// }
 
 		Vector3 mouseWorldPoint = GameNight.staticRef.completeCameraMain.camera.ScreenToWorldPoint (Input.mousePosition + Vector3.forward * (transform.position.z - GameNight.staticRef.completeCameraMain.camera.transform.position.z));
 		Vector3 diff = mouseWorldPoint - transform.position;

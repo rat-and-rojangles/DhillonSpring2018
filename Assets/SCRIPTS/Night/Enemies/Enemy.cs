@@ -4,15 +4,17 @@ using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour {
 
+	public int treasureCount;
 	[SerializeField]
-	private Treasure [] treasures;
+	private GameObject treasurePrefab;
 
 	public void Die (Vector2 bulletDirection) {
-		foreach (Treasure t in treasures) {
+		for (int x = 0; x < treasureCount; x++) {
+			Treasure t = Instantiate (treasurePrefab, transform.position, Quaternion.identity).GetComponent<Treasure> ();
 			Vector2 newVel = bulletDirection.normalized;
-			newVel.Rotate (Utility.randomMagnitude * 30f);
-			newVel *= Random.Range (10f, 15f);
-			newVel.x *= 0.5f;
+			newVel.Rotate (Utility.randomMagnitude * 20f);
+			newVel *= Random.Range (7f, 12f);
+			newVel.x *= 0.75f;
 			t.Release (newVel);
 		}
 		SoundPlayer.PlayOneShot (GameNight.staticRef.soundLibrary.oof, 2f);
