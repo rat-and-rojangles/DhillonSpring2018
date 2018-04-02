@@ -14,12 +14,12 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Character
+  - Treasure
+  - Bullet
+  - Enemy
+  - Overlay
+  - Ghost
   - 
   - 
   - 

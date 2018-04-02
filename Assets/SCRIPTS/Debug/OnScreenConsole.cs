@@ -17,8 +17,7 @@ public class OnScreenConsole : MonoBehaviour {
 	}
 
 	private static void CreateStaticRef () {
-		GameObject empty = new GameObject ();
-		empty.name = "On Screen Console";
+		GameObject empty = new GameObject ("On Screen Console");
 		m_staticRef = empty.AddComponent<OnScreenConsole> ();
 		m_staticRef.m_textColor = Color.white;
 	}
