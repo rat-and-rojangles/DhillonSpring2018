@@ -5,7 +5,7 @@ using UnityEngine;
 public class Energy : MonoBehaviour {
 
 	[SerializeField]
-	private float m_maxEnergy;
+	private float m_maxEnergy = 100f;
 	/// <summary>
 	/// Dhillon's energy caps out at this value.
 	/// </summary>

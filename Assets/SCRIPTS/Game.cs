@@ -37,12 +37,6 @@ public class Game : MonoBehaviour {
 	}
 
 	[SerializeField]
-	private Daylight m_daylight;
-	public Daylight daylight {
-		get { return m_daylight; }
-	}
-
-	[SerializeField]
 	private TextHeaderForWorldObject m_screenInteractPromptText;
 	public TextHeaderForWorldObject screenInteractPromptText {
 		get { return m_screenInteractPromptText; }
