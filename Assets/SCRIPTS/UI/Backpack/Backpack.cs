@@ -4,6 +4,21 @@ using UnityEngine;
 
 public class Backpack : OffscreenUIElement, Initializable {
 
+	private static Backpack m_current;
+	/// <summary>
+	/// Return the Backpack of the active scene.
+	/// </summary>
+	public static Backpack current {
+		get { return m_current; }
+	}
+
+	void Awake () {
+		m_current = this;
+	}
+	void OnDestroy () {
+		m_current = null;
+	}
+
 
 	private bool disappearing = false;
 
@@ -44,12 +59,12 @@ public class Backpack : OffscreenUIElement, Initializable {
 			}
 		}
 		if (desiredIndex == -1) {
-			Game.staticRef.thoughtBubble.SetMessage ("My backpack is full!");
+			ThoughtBubble.current.SetMessage ("My backpack is full!");
 		}
 		else {
 			item.gameObject.SetActive (false);
 			ownedItems [desiredIndex] = item;
-			Game.staticRef.DisplayShortMessage ("Collected!");
+			ShortMessageGenerator.current.GenerateShortMessage ("Collected!");
 			UpdateButtons ();
 		}
 	}

@@ -17,7 +17,7 @@ public class GhostEnemy : Enemy {
 	}
 
 	void FixedUpdate () {
-		Vector2 direction = (GameNight.staticRef.player.transform.position - transform.position).normalized;
+		Vector2 direction = (Game.current.heroCharacter.transform.position - transform.position).normalized;
 		rigidbody2D.MovePositionRelative (direction * speed * Time.deltaTime);
 	}
 }

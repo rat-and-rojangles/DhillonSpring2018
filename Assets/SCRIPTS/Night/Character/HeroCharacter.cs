@@ -43,8 +43,6 @@ public class HeroCharacter : MonoBehaviour {
 		Normal, Stunned, Dashing
 	}
 
-	private SpriteRenderer spriteRenderer;
-
 	public float runSpeed = 1f;
 	public float jumpHeight = 4f;
 	public int extraJumps = 1;
@@ -85,10 +83,8 @@ public class HeroCharacter : MonoBehaviour {
 		frameAction.CombineWith (thisFrame);
 	}
 
-
 	void Start () {
 		frameAction = FrameAction.NEUTRAL;
-		spriteRenderer = GetComponent<SpriteRenderer> ();
 		collider = GetComponent<BoxCollider2D> ();
 		meshRenderer = GetComponent<MeshRenderer> ();
 		groundCheckPointLeftLocal = collider.offset + Vector2.down * collider.size.y * 0.55f + Vector2.left * collider.size.x * 0.5f;
@@ -147,12 +143,12 @@ public class HeroCharacter : MonoBehaviour {
 		if (frameAction.jump) {
 			if (grounded) {
 				Jump ();
-				SoundPlayer.PlayOneShot (GameNight.staticRef.soundLibrary.jump1);
+				SoundPlayer.PlayOneShot (ImportantAssets.soundLibrary.jump1);
 			}
 			else if (remainingJumps > 0) {
 				remainingJumps--;
 				Jump ();
-				SoundPlayer.PlayOneShot (GameNight.staticRef.soundLibrary.jump2);
+				SoundPlayer.PlayOneShot (ImportantAssets.soundLibrary.jump2);
 			}
 		}
 	}
@@ -160,10 +156,10 @@ public class HeroCharacter : MonoBehaviour {
 	void OnCollisionEnter2D (Collision2D other) {
 		Enemy enemy = other.gameObject.GetComponent<Enemy> ();
 		if (enemy != null) {
-			GameNight.staticRef.playerEnergy.IncreaseEnergy (-hitDamage);
-			GameNight.staticRef.completeCameraMain.camShake.Shake (0.25f, 0.5f);
+			Energy.current.IncreaseEnergy (-hitDamage);
+			CompleteCamera.current.camShake.Shake (0.25f, 0.5f);
 			meshRenderer.material.color = meshRenderer.material.color.ChangedAlpha (0.25f);
-			SoundPlayer.PlayOneShot (GameNight.staticRef.soundLibrary.hurt);
+			SoundPlayer.PlayOneShot (ImportantAssets.soundLibrary.hurt);
 			movementType = MovementType.Stunned;
 			gameObject.layer = STUNNED_LAYER;
 			Vector2 stunFling = (transform.position - other.gameObject.transform.position).normalized;

@@ -9,16 +9,20 @@ using UnityEngine.UI;
 public class ObjectCenteredBillboard : MonoBehaviour {
 
 	private Transform target = null;
-	private RectTransform rectTransform;
-
-	protected virtual void Awake () {
-		rectTransform = GetComponent<RectTransform> ();
+	private RectTransform m_rectTransform;
+	private RectTransform rectTransform {
+		get {
+			if (m_rectTransform == null) {
+				m_rectTransform = GetComponent<RectTransform> ();
+			}
+			return m_rectTransform;
+		}
 	}
 
 	void Update () {
 		if (target != null) {
 			Vector2 viewportPos = Camera.main.WorldToViewportPoint (target.position);
-			rectTransform.anchoredPosition = new Vector2 (((viewportPos.x * Game.staticRef.mainCanvasRect.sizeDelta.x) - (Game.staticRef.mainCanvasRect.sizeDelta.x * 0.5f)), ((viewportPos.y * Game.staticRef.mainCanvasRect.sizeDelta.y) - (Game.staticRef.mainCanvasRect.sizeDelta.y * 0.5f)));
+			rectTransform.anchoredPosition = new Vector2 (((viewportPos.x * Game.current.mainCanvasRect.sizeDelta.x) - (Game.current.mainCanvasRect.sizeDelta.x * 0.5f)), ((viewportPos.y * Game.current.mainCanvasRect.sizeDelta.y) - (Game.current.mainCanvasRect.sizeDelta.y * 0.5f)));
 		}
 		else {
 			gameObject.SetActive (false);

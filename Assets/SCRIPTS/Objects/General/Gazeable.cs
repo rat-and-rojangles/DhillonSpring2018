@@ -23,7 +23,7 @@ public abstract class Gazeable : MonoBehaviour {
 			List<Material> newMats = new List<Material> ();
 			Material [] oldMats = p_renderer.materials;
 			for (int x = 0; x < oldMats.Length; x++) {
-				Material tempHighlight = new Material (Game.staticRef.highlightMaterial);
+				Material tempHighlight = new Material (ImportantAssets.highlightMaterial);
 				tempHighlight.mainTexture = oldMats [x].mainTexture;
 				newMats.Add (tempHighlight);
 			}

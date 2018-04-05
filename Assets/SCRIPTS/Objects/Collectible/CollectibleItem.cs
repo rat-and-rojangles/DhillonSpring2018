@@ -10,7 +10,7 @@ public abstract class CollectibleItem : Interactable {
 	public abstract Sprite icon { get; }
 
 	public override void Interact () {
-		Game.staticRef.backpack.CollectItem (this);
+		Backpack.current.CollectItem (this);
 	}
 
 	/// <summary>

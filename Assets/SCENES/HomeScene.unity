@@ -4171,7 +4171,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &587610995
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4236,7 +4236,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Random number
+  m_Text: 
 --- !u!222 &587610998
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8669,13 +8669,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_mainCanvasRect: {fileID: 1845967717}
-  m_screenInteractPromptText: {fileID: 587610999}
-  m_highlightMaterial: {fileID: 2100000, guid: 50190e2a81874844d8728c9898fa42d6, type: 2}
-  m_thoughtBubble: {fileID: 65240808}
-  m_backpack: {fileID: 1924267231}
-  m_darknessImage: {fileID: 37194777}
-  shortMessageGenerator: {fileID: 1215867959}
-  m_player: {fileID: 1150339175}
+  m_dayCharacter: {fileID: 0}
+  m_heroCharacter: {fileID: 0}
 --- !u!4 &1215867956
 Transform:
   m_ObjectHideFlags: 0
@@ -8755,9 +8750,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adab917a6fd208843b62f4a6f1ea30f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCanvas: {fileID: 1845967717}
-  shortMessagePrefab: {fileID: 1640808631521284, guid: 85c6591d2ec84eb44bc4bcdaf877d24c,
-    type: 2}
 --- !u!1 &1217907699
 GameObject:
   m_ObjectHideFlags: 0

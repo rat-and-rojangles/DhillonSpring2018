@@ -26,8 +26,8 @@ public class CollectibleBall : CollectibleItem {
 	}
 
 	public override void Deploy () {
-		transform.position = Game.staticRef.player.transform.position + Game.staticRef.player.transform.forward;
+		transform.position = Game.current.dayCharacter.transform.position + Game.current.dayCharacter.transform.forward;
 		gameObject.SetActive (true);
-		rigidbody.AddForce (Game.staticRef.player.transform.forward * 10f + Vector3.up * 2f, ForceMode.VelocityChange);
+		rigidbody.AddForce (Game.current.dayCharacter.transform.forward * 10f + Vector3.up * 2f, ForceMode.VelocityChange);
 	}
 }

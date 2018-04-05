@@ -17,11 +17,11 @@ public abstract class Interactable : Gazeable {
 	}
 
 	protected override void OnGazeEnter () {
-		Game.staticRef.screenInteractPromptText.SetText (promptText);
-		Game.staticRef.screenInteractPromptText.SetTarget (transform);
+		TextHeaderForWorldObject.current.SetText (promptText);
+		TextHeaderForWorldObject.current.SetTarget (transform);
 	}
 	protected override void OnGazeExit () {
-		Game.staticRef.screenInteractPromptText.SetTarget (null);
+		TextHeaderForWorldObject.current.SetTarget (null);
 	}
 
 	private void OnDisable () {

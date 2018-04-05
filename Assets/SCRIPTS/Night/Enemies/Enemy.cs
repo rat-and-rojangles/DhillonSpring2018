@@ -17,13 +17,13 @@ public abstract class Enemy : MonoBehaviour {
 			newVel.x *= 0.75f;
 			t.Release (newVel);
 		}
-		SoundPlayer.PlayOneShot (GameNight.staticRef.soundLibrary.oof, 2f);
+		SoundPlayer.PlayOneShot (ImportantAssets.soundLibrary.oof, 2f);
 		Destroy (gameObject);
 	}
 
 	[ContextMenu ("DebugDie")]
 	public void DebugDie () {
-		Die (transform.position - GameNight.staticRef.player.transform.position);
+		Die (transform.position - Game.current.heroCharacter.transform.position);
 	}
 
 }

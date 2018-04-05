@@ -20,8 +20,8 @@ public class Treasure : MonoBehaviour {
 	}
 
 	public void Disappear () {
-		GameNight.staticRef.score.score++;
-		SoundPlayer.PlayOneShot (GameNight.staticRef.soundLibrary.powerup);
+		NightScore.current.score++;
+		SoundPlayer.PlayOneShot (ImportantAssets.soundLibrary.powerup);
 		rigidbody2D.isKinematic = true;
 		StartCoroutine (DisappearHelper ());
 	}

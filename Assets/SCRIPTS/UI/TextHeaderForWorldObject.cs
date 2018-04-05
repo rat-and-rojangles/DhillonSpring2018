@@ -8,6 +8,21 @@ using UnityEngine.UI;
 /// </summary>
 public class TextHeaderForWorldObject : ObjectCenteredBillboard {
 
+	private static TextHeaderForWorldObject m_current;
+	/// <summary>
+	/// Return the TextHeaderForWorldObject of the active scene.
+	/// </summary>
+	public static TextHeaderForWorldObject current {
+		get { return m_current; }
+	}
+
+	void Awake () {
+		m_current = this;
+	}
+	void OnDestroy () {
+		m_current = null;
+	}
+
 	private Text m_uiText;
 	private Text uiText {
 		get {

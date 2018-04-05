@@ -855,7 +855,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 656318301}
+      - m_Target: {fileID: 656318297}
         m_MethodName: SetTimeScale
         m_Mode: 4
         m_Arguments:
@@ -969,7 +969,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 656318301}
+      - m_Target: {fileID: 656318297}
         m_MethodName: SetTimeScale
         m_Mode: 4
         m_Arguments:
@@ -1378,12 +1378,10 @@ GameObject:
   m_Component:
   - component: {fileID: 656318298}
   - component: {fileID: 656318297}
-  - component: {fileID: 656318299}
   - component: {fileID: 656318300}
   - component: {fileID: 656318302}
   - component: {fileID: 656318304}
   - component: {fileID: 656318305}
-  - component: {fileID: 656318301}
   m_Layer: 0
   m_Name: Universal
   m_TagString: Untagged
@@ -1399,14 +1397,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 656318296}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bf1609d328a0854c9d524917aa14b89, type: 3}
+  m_Script: {fileID: 11500000, guid: 6d6d140fa6810a84e8fda901d91c49ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_player: {fileID: 384161038}
-  m_playerEnergy: {fileID: 428080192}
-  m_completeCameraMain: {fileID: 927310112}
-  m_soundLibrary: {fileID: 656318299}
-  m_score: {fileID: 656318304}
+  m_mainCanvasRect: {fileID: 2013252242}
+  m_dayCharacter: {fileID: 0}
+  m_heroCharacter: {fileID: 384161038}
 --- !u!4 &656318298
 Transform:
   m_ObjectHideFlags: 0
@@ -1422,23 +1418,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &656318299
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 656318296}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fdf7c15a42a1024ea81f6f9edc9108e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  jump1: {fileID: 8300000, guid: 24e4351eb96402a49880b0f203235384, type: 3}
-  jump2: {fileID: 8300000, guid: d715f608a0c86d946850344f8ae1465b, type: 3}
-  gunshot: {fileID: 8300000, guid: b437247725d5926468f988069430e3ab, type: 3}
-  powerup: {fileID: 8300000, guid: c466b5404ef97b54a956a53cc192f792, type: 3}
-  oof: {fileID: 8300000, guid: dfb999a71b512e745b50865d4756ecb4, type: 3}
-  hurt: {fileID: 8300000, guid: 0aefd6b436a8d104ebe1667e68a31579, type: 3}
 --- !u!82 &656318300
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1519,17 +1498,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!114 &656318301
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 656318296}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1bf0fc763c2a6e541a3aa541161729a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &656318302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2027,7 +1995,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 656318301}
+      - m_Target: {fileID: 656318297}
         m_MethodName: SetTimeScale
         m_Mode: 4
         m_Arguments:

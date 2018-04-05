@@ -15,6 +15,6 @@ public class ThinkAboutSomething : Interactable {
 	}
 
 	public override void Interact () {
-		Game.staticRef.thoughtBubble.SetMessage (message);
+		ThoughtBubble.current.SetMessage (message);
 	}
 }

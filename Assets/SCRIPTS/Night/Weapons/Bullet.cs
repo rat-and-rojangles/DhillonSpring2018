@@ -9,7 +9,7 @@ public class Bullet : MonoBehaviour {
 	[SerializeField]
 	private new Rigidbody2D rigidbody2D;
 	public void Initialize (float angleDegrees) {
-		transform.position = GameNight.staticRef.player.transform.position;
+		transform.position = Game.current.heroCharacter.transform.position;
 		transform.rotation = Quaternion.Euler (0f, 0f, angleDegrees);
 		rigidbody2D.velocity = Utility.DegreeToVector2 (angleDegrees).normalized * BULLET_SPEED;
 	}
@@ -20,7 +20,7 @@ public class Bullet : MonoBehaviour {
 			enabled = false;
 			gameObject.SetActive (false);
 			enemy.Die (other.transform.position - transform.position);
-			GameNight.staticRef.completeCameraMain.camShake.Shake (0.1f, 0.5f);
+			CompleteCamera.current.camShake.Shake (0.1f, 0.5f);
 			Destroy (gameObject);
 		}
 	}

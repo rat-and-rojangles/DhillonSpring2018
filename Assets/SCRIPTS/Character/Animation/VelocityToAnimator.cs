@@ -6,7 +6,7 @@ public class VelocityToAnimator : MonoBehaviour {
 
 	public Animator animator;
 	public CharacterController characterController;
-	public PlayerCharacter playerCharacter;
+	public DayCharacter playerCharacter;
 
 	void Update () {
 		animator.SetFloat ("LateralSpeed", characterController.transform.InverseTransformDirection(characterController.velocity).x / playerCharacter.runSpeed);

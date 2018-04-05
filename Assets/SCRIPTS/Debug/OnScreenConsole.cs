@@ -6,52 +6,52 @@ public class OnScreenConsole : MonoBehaviour {
 
 	public Color m_textColor;
 
-	private static OnScreenConsole m_staticRef;
-	private static OnScreenConsole staticRef {
+	private static OnScreenConsole m_current;
+	private static OnScreenConsole current {
 		get {
-			if (m_staticRef == null) {
-				CreateStaticRef ();
+			if (m_current == null) {
+				Createcurrent ();
 			}
-			return m_staticRef;
+			return m_current;
 		}
 	}
 
-	private static void CreateStaticRef () {
+	private static void Createcurrent () {
 		GameObject empty = new GameObject ("On Screen Console");
-		m_staticRef = empty.AddComponent<OnScreenConsole> ();
-		m_staticRef.m_textColor = Color.white;
+		m_current = empty.AddComponent<OnScreenConsole> ();
+		m_current.m_textColor = Color.white;
 	}
 
 	public static Color textColor {
 		get {
-			return staticRef.m_textColor;
+			return current.m_textColor;
 		}
 		set {
-			staticRef.m_textColor = value;
+			current.m_textColor = value;
 		}
 	}
 
 	private string text = "";
 
 	void Awake () {
-		m_staticRef = this;
+		m_current = this;
 	}
 	void OnDestroy () {
-		m_staticRef = null;
+		m_current = null;
 	}
 
 	/// <summary>
 	/// Write a persistent message to the screen.
 	/// </summary>
 	public static void Log (object message) {
-		staticRef.text += message.ToString () + "\n";
-		if (staticRef.text.Length > 1000) {
-			staticRef.text = staticRef.text.Substring (staticRef.text.Length - 1000);
+		current.text += message.ToString () + "\n";
+		if (current.text.Length > 1000) {
+			current.text = current.text.Substring (current.text.Length - 1000);
 		}
 	}
 
 	public static void ClearConsole () {
-		staticRef.text = "";
+		current.text = "";
 	}
 
 	void OnGUI () {
@@ -64,7 +64,7 @@ public class OnScreenConsole : MonoBehaviour {
 
 		style.alignment = TextAnchor.LowerLeft;
 		style.fontSize = h / 12;
-		style.normal.textColor = staticRef.m_textColor;
+		style.normal.textColor = current.m_textColor;
 
 		Rect rect = new Rect (0, h - style.fontSize * 2, w, h / 4);
 

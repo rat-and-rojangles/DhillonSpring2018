@@ -6,6 +6,6 @@ public class BallObject : Interactable {
 	public override string promptText { get { return "Kick ball"; } }
 
 	public override void Interact () {
-		GetComponent<Rigidbody> ().AddForce (transform.position - Game.staticRef.player.transform.position, ForceMode.Impulse);
+		GetComponent<Rigidbody> ().AddForce (transform.position - Game.current.dayCharacter.transform.position, ForceMode.Impulse);
 	}
 }

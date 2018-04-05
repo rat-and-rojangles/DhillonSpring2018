@@ -8,6 +8,6 @@ public class GhostSpawer : MonoBehaviour {
 
 	public void Spawn () {
 		Vector3 offset = Random.insideUnitCircle.normalized * 10f;
-		Instantiate (prefab, GameNight.staticRef.player.transform.position + offset, Quaternion.identity);
+		Instantiate (prefab, Game.current.heroCharacter.transform.position + offset, Quaternion.identity);
 	}
 }

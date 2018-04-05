@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class Game : MonoBehaviour {
 
-	private static Game m_staticRef;
+	private static Game m_current;
 	/// <summary>
 	/// Return the Game of the active scene.
 	/// </summary>
-	public static Game staticRef {
-		get { return m_staticRef; }
+	public static Game current {
+		get { return m_current; }
 	}
 
 	void Awake () {
-		m_staticRef = this;
+		m_current = this;
 	}
 
 	void Start () {
@@ -24,7 +24,7 @@ public class Game : MonoBehaviour {
 	}
 
 	void OnDestroy () {
-		m_staticRef = null;
+		m_current = null;
 	}
 
 	[SerializeField]
@@ -34,30 +34,6 @@ public class Game : MonoBehaviour {
 	/// </summary>
 	public RectTransform mainCanvasRect {
 		get { return m_mainCanvasRect; }
-	}
-
-	[SerializeField]
-	private TextHeaderForWorldObject m_screenInteractPromptText;
-	public TextHeaderForWorldObject screenInteractPromptText {
-		get { return m_screenInteractPromptText; }
-	}
-
-	[SerializeField]
-	private Material m_highlightMaterial;
-	public Material highlightMaterial {
-		get { return m_highlightMaterial; }
-	}
-
-	[SerializeField]
-	private ThoughtBubble m_thoughtBubble;
-	public ThoughtBubble thoughtBubble {
-		get { return m_thoughtBubble; }
-	}
-
-	[SerializeField]
-	private Backpack m_backpack;
-	public Backpack backpack {
-		get { return m_backpack; }
 	}
 
 	/// <summary>
@@ -75,24 +51,20 @@ public class Game : MonoBehaviour {
 	}
 
 	[SerializeField]
-	private UnityEngine.UI.Image m_darknessImage;
-
+	private DayCharacter m_dayCharacter;
 	/// <summary>
-	/// From 0 - 1, where 0 is normal and 1 is fully black.
+	/// User controlled kid for day levels. Null during night levels.
 	/// </summary>
-	public void SetScreenDarkness (float darkness) {
-		m_darknessImage.color = Color.black.ChangedAlpha (darkness);
+	public DayCharacter dayCharacter {
+		get { return m_dayCharacter; }
 	}
 
 	[SerializeField]
-	private ShortMessageGenerator shortMessageGenerator;
-	public void DisplayShortMessage (string message) {
-		shortMessageGenerator.GenerateShortMessage (message);
-	}
-
-	[SerializeField]
-	private PlayerCharacter m_player;
-	public PlayerCharacter player {
-		get { return m_player; }
+	private HeroCharacter m_heroCharacter;
+	/// <summary>
+	/// User controlled hero for night levels. Null during day levels.
+	/// </summary>
+	public HeroCharacter heroCharacter {
+		get { return m_heroCharacter; }
 	}
 }

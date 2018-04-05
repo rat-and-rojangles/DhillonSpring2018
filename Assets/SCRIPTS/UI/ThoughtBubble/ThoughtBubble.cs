@@ -4,6 +4,21 @@ using UnityEngine;
 
 public class ThoughtBubble : OffscreenUIElement {
 
+	private static ThoughtBubble m_current;
+	/// <summary>
+	/// Return the ThoughtBubble of the active scene.
+	/// </summary>
+	public static ThoughtBubble current {
+		get { return m_current; }
+	}
+
+	void Awake () {
+		m_current = this;
+	}
+	void OnDestroy () {
+		m_current = null;
+	}
+
 	public KeyCode closeKey;
 
 	[SerializeField]

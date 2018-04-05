@@ -14,15 +14,15 @@ public class PlayerGun : MonoBehaviour {
 	private GameObject bulletPrefab;
 	public void Shoot () {
 		Instantiate (bulletPrefab).GetComponent<Bullet> ().Initialize (transform.eulerAngles.z);
-		GameNight.staticRef.player.rigidbody2D.velocity += Utility.DegreeToVector2 (transform.eulerAngles.z + 180f).normalized * recoilScale;
-		GameNight.staticRef.playerEnergy.IncreaseEnergy (-GameNight.staticRef.player.bulletEnergyCost);
-		GameNight.staticRef.completeCameraMain.camShake.Shake (0.5f, 0.1f);
-		SoundPlayer.PlayOneShot (GameNight.staticRef.soundLibrary.gunshot, 2f);
+		Game.current.heroCharacter.rigidbody2D.velocity += Utility.DegreeToVector2 (transform.eulerAngles.z + 180f).normalized * recoilScale;
+		Energy.current.IncreaseEnergy (-Game.current.heroCharacter.bulletEnergyCost);
+		CompleteCamera.current.camShake.Shake (0.5f, 0.1f);
+		SoundPlayer.PlayOneShot (ImportantAssets.soundLibrary.gunshot, 2f);
 	}
 
 	void Update () {
 
-		Vector3 mouseWorldPoint = GameNight.staticRef.completeCameraMain.camera.ScreenToWorldPoint (Input.mousePosition + Vector3.forward * (transform.position.z - GameNight.staticRef.completeCameraMain.camera.transform.position.z));
+		Vector3 mouseWorldPoint = CompleteCamera.current.camera.ScreenToWorldPoint (Input.mousePosition + Vector3.forward * (transform.position.z - CompleteCamera.current.camera.transform.position.z));
 		Vector3 diff = mouseWorldPoint - transform.position;
 		diff.z = 0f;
 
@@ -39,6 +39,6 @@ public class PlayerGun : MonoBehaviour {
 			camLead = Vector2.zero;
 		}
 
-		GameNight.staticRef.completeCameraMain.looseFollow.offset = camLead;
+		CompleteCamera.current.looseFollow.offset = camLead;
 	}
 }
