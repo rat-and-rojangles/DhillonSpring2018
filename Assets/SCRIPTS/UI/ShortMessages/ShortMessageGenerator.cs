@@ -18,11 +18,20 @@ public class ShortMessageGenerator : MonoBehaviour {
 	void OnDestroy () {
 		m_current = null;
 	}
-
+	public void GenerateShortMessage (string message, HealthCategory healthCategory) {
+		GameObject shortMessage = Instantiate (ImportantAssets.shortMessagePrefab);
+		shortMessage.transform.SetParent (Game.current.mainCanvasRect, false);
+		shortMessage.GetComponent<ShortMessage> ().Setup (message, healthCategory);
+	}
 
 	public void GenerateShortMessage (string message) {
 		GameObject shortMessage = Instantiate (ImportantAssets.shortMessagePrefab);
 		shortMessage.transform.SetParent (Game.current.mainCanvasRect, false);
-		shortMessage.GetComponent<ShortMessage> ().text.text = message;
+		if (Game.current.heroCharacter != null) {
+			Vector2 viewportPos = CompleteCamera.current.camera.WorldToViewportPoint (Game.current.heroCharacter.transform.position);
+			(shortMessage.transform as RectTransform).anchoredPosition = new Vector2 (((viewportPos.x * Game.current.mainCanvasRect.sizeDelta.x) - (Game.current.mainCanvasRect.sizeDelta.x * 0.5f)), ((viewportPos.y * Game.current.mainCanvasRect.sizeDelta.y) - (Game.current.mainCanvasRect.sizeDelta.y * 0.5f)));
+		}
+		shortMessage.GetComponent<ShortMessage> ().Setup (message, HealthCategory.Uncategorized);
 	}
+
 }

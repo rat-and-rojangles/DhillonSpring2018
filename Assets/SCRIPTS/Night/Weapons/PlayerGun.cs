@@ -15,7 +15,7 @@ public class PlayerGun : MonoBehaviour {
 	public void Shoot () {
 		Instantiate (bulletPrefab).GetComponent<Bullet> ().Initialize (transform.eulerAngles.z);
 		Game.current.heroCharacter.rigidbody2D.velocity += Utility.DegreeToVector2 (transform.eulerAngles.z + 180f).normalized * recoilScale;
-		Energy.current.IncreaseEnergy (-Game.current.heroCharacter.bulletEnergyCost);
+		Energy.current.IncreaseEnergySilently (-Game.current.heroCharacter.bulletEnergyCost);
 		CompleteCamera.current.camShake.Shake (0.5f, 0.1f);
 		SoundPlayer.PlayOneShot (ImportantAssets.soundLibrary.gunshot, 2f);
 	}

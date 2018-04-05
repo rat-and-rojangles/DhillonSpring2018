@@ -32,4 +32,14 @@ public static class ImportantAssets {
 			return m_soundLibrary;
 		}
 	}
+
+	private static HealthCategoryResources m_healthCategoryResources = null;
+	public static HealthCategoryResources healthCategoryResources {
+		get {
+			if (m_healthCategoryResources == null) {
+				m_healthCategoryResources = Resources.Load<HealthCategoryResources> ("HealthCategoryResources");
+			}
+			return m_healthCategoryResources;
+		}
+	}
 }

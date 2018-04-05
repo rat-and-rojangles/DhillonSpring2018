@@ -7,6 +7,6 @@ public class ConstantEnergyDecrease : MonoBehaviour {
 	public float drainPerSecond;
 
 	void Update () {
-		Energy.current.IncreaseEnergy (-drainPerSecond * Time.deltaTime);
+		Energy.current.IncreaseEnergySilently (-drainPerSecond * Time.deltaTime);
 	}
 }

@@ -11,6 +11,10 @@ public static class Extensions {
 		rigidbody2D.MovePosition (rigidbody2D.position + increment);
 	}
 
+	public static HealthCategoryResources.HealthCategoryData GetData (this HealthCategory healthCategory) {
+		return ImportantAssets.healthCategoryResources.GetDataFromCategory (healthCategory);
+	}
+
 	/// <summary>
 	/// untested
 	/// </summary>

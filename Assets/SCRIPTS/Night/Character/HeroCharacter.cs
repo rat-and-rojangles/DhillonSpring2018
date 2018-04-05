@@ -156,7 +156,7 @@ public class HeroCharacter : MonoBehaviour {
 	void OnCollisionEnter2D (Collision2D other) {
 		Enemy enemy = other.gameObject.GetComponent<Enemy> ();
 		if (enemy != null) {
-			Energy.current.IncreaseEnergy (-hitDamage);
+			Energy.current.IncreaseEnergyUncategorized (-hitDamage);
 			CompleteCamera.current.camShake.Shake (0.25f, 0.5f);
 			meshRenderer.material.color = meshRenderer.material.color.ChangedAlpha (0.25f);
 			SoundPlayer.PlayOneShot (ImportantAssets.soundLibrary.hurt);

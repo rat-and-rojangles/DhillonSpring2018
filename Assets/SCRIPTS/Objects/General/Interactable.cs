@@ -21,7 +21,9 @@ public abstract class Interactable : Gazeable {
 		TextHeaderForWorldObject.current.SetTarget (transform);
 	}
 	protected override void OnGazeExit () {
-		TextHeaderForWorldObject.current.SetTarget (null);
+		if (TextHeaderForWorldObject.current != null) {		// suppresses the irrelevant OnDestroy errors
+			TextHeaderForWorldObject.current.SetTarget (null);
+		}
 	}
 
 	private void OnDisable () {

@@ -14,22 +14,32 @@ public class ShortMessage : MonoBehaviour {
 		}
 	}
 
-	private Text m_text;
-	public Text text {
-		get {
-			if (m_text == null) {
-				m_text = GetComponent<Text> ();
-			}
-			return m_text;
-		}
-	}
-
 	void Start () {
 		StartCoroutine (Ascend ());
 	}
 
 	public float ascensionDuration = 1.5f;
 	public float ascensionHeight = 222f;
+
+	[SerializeField]
+	private Text text;
+	[SerializeField]
+	private Image icon1;
+	[SerializeField]
+	private Image icon2;
+
+	public void Setup (string message, HealthCategory healthCategory = HealthCategory.Uncategorized) {
+		text.text = message;
+		if (healthCategory != HealthCategory.Uncategorized) {
+			var data = healthCategory.GetData ();
+			text.color = data.color;
+			icon1.sprite = data.icon;
+			icon2.sprite = data.icon;
+
+			icon1.color = data.color.ChangedAlpha (0.5f);
+			icon2.color = icon1.color;
+		}
+	}
 
 	private IEnumerator Ascend () {
 		float startTime = Time.realtimeSinceStartup;

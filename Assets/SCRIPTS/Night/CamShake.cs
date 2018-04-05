@@ -17,6 +17,10 @@ public class CamShake : MonoBehaviour {
 		this.strength = strength;
 	}
 
+	public void DebugModerateShake () {
+		Shake (0.25f, 1f);
+	}
+
 	void Update () {
 		transform.localPosition = Random.insideUnitCircle * Mathf.Lerp (strength, 0f, timeElapsed / duration);
 		timeElapsed += Time.deltaTime;

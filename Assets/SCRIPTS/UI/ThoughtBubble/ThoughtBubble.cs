@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ThoughtBubble : OffscreenUIElement {
+public class ThoughtBubble : OffscreenUIElement, Initializable {
 
 	private static ThoughtBubble m_current;
 	/// <summary>
@@ -12,7 +12,7 @@ public class ThoughtBubble : OffscreenUIElement {
 		get { return m_current; }
 	}
 
-	void Awake () {
+	public void Initialize () {
 		m_current = this;
 	}
 	void OnDestroy () {

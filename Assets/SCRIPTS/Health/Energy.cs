@@ -66,10 +66,31 @@ public class Energy : MonoBehaviour {
 		}
 	}
 
+	public void IncreaseEnergyDiet (float increaseAmount) {
+		IncreaseEnergy (increaseAmount, HealthCategory.Diet);
+	}
+	public void IncreaseEnergySocial (float increaseAmount) {
+		IncreaseEnergy (increaseAmount, HealthCategory.Social);
+	}
+	public void IncreaseEnergyExercise (float increaseAmount) {
+		IncreaseEnergy (increaseAmount, HealthCategory.Exercise);
+	}
+	public void IncreaseEnergyUncategorized (float increaseAmount) {
+		IncreaseEnergy (increaseAmount, HealthCategory.Uncategorized);
+	}
+	public void IncreaseEnergySilently (float increaseAmount) {
+		IncreaseEnergy (increaseAmount, HealthCategory.Silent);
+	}
+
 	/// <summary>
-	/// Increase Dhillon's energy by this much. Use a negative number to decrease.
+	/// Increase Dhillon's energy by this much. Use a negative number to decrease. Use the null health category to suppress the popup message.
 	/// </summary>
-	public void IncreaseEnergy (float increaseAmount) {
+	public void IncreaseEnergy (float increaseAmount, HealthCategory healthCategory) {
 		currentEnergy += increaseAmount;
+		if (healthCategory != HealthCategory.Silent) {
+			string message = increaseAmount < 0f ? "-" : "+";
+			message += Mathf.Abs (increaseAmount).ToString ();
+			ShortMessageGenerator.current.GenerateShortMessage (message, healthCategory);
+		}
 	}
 }

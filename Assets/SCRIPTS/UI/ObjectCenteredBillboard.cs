@@ -21,7 +21,7 @@ public class ObjectCenteredBillboard : MonoBehaviour {
 
 	void Update () {
 		if (target != null) {
-			Vector2 viewportPos = Camera.main.WorldToViewportPoint (target.position);
+			Vector2 viewportPos = CompleteCamera.current.camera.WorldToViewportPoint (target.position);
 			rectTransform.anchoredPosition = new Vector2 (((viewportPos.x * Game.current.mainCanvasRect.sizeDelta.x) - (Game.current.mainCanvasRect.sizeDelta.x * 0.5f)), ((viewportPos.y * Game.current.mainCanvasRect.sizeDelta.y) - (Game.current.mainCanvasRect.sizeDelta.y * 0.5f)));
 		}
 		else {
