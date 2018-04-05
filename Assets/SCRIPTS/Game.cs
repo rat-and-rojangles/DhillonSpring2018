@@ -14,6 +14,7 @@ public class Game : MonoBehaviour {
 
 	void Awake () {
 		m_current = this;
+		if (heroCharacter == null) { }	// just make sure it's instantiated
 	}
 
 	void Start () {
@@ -59,12 +60,22 @@ public class Game : MonoBehaviour {
 		get { return m_dayCharacter; }
 	}
 
+
 	[SerializeField]
+	private HeroInstantiator heroInstantiator;
 	private HeroCharacter m_heroCharacter;
 	/// <summary>
 	/// User controlled hero for night levels. Null during day levels.
 	/// </summary>
 	public HeroCharacter heroCharacter {
-		get { return m_heroCharacter; }
+		get {
+			if (heroInstantiator == null) {
+				return null;
+			}
+			else if (m_heroCharacter == null) {
+				m_heroCharacter = heroInstantiator.InstantiateHero ();
+			}
+			return m_heroCharacter;
+		}
 	}
 }

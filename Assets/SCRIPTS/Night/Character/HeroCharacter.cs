@@ -26,6 +26,14 @@ public class HeroCharacter : MonoBehaviour {
 		}
 	}
 	private new BoxCollider2D collider;
+
+	[SerializeField]
+	private PlayerGun m_gun;
+	public PlayerGun gun {
+		get { return m_gun; }
+	}
+
+	[SerializeField]
 	private MeshRenderer meshRenderer;
 
 	private Vector2 groundCheckPointLeftLocal;
@@ -86,7 +94,7 @@ public class HeroCharacter : MonoBehaviour {
 	void Start () {
 		frameAction = FrameAction.NEUTRAL;
 		collider = GetComponent<BoxCollider2D> ();
-		meshRenderer = GetComponent<MeshRenderer> ();
+
 		groundCheckPointLeftLocal = collider.offset + Vector2.down * collider.size.y * 0.55f + Vector2.left * collider.size.x * 0.5f;
 		groundCheckPointRightLocal = collider.offset + Vector2.down * collider.size.y * 0.55f + Vector2.right * collider.size.x * 0.5f;
 	}

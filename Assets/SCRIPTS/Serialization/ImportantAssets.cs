@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Bridge to various assets in Resources to cut down on cluttered references in the editor.
+/// </summary>
 public static class ImportantAssets {
 	private static Material m_highlightMaterial = null;
 	public static Material highlightMaterial {
@@ -40,6 +43,30 @@ public static class ImportantAssets {
 				m_healthCategoryResources = Resources.Load<HealthCategoryResources> ("HealthCategoryResources");
 			}
 			return m_healthCategoryResources;
+		}
+	}
+
+	private static CharacterPreferences m_characterPreferences = null;
+	public static CharacterPreferences characterPreferences {
+		get {
+			if (m_characterPreferences == null) {
+				m_characterPreferences = Resources.Load<CharacterPreferences> ("CharacterPreferences");
+			}
+			return m_characterPreferences;
+		}
+	}
+
+	private static GameObject [] m_heroPrefabs = null;
+	/// <summary>
+	/// All prefabs for the night character. 
+	/// </summary>
+	/// <returns></returns>
+	public static GameObject [] heroPrefabs {
+		get {
+			if (m_heroPrefabs == null) {
+				m_heroPrefabs = Resources.Load<PrefabArray> ("HeroPrefabs").prefabs;
+			}
+			return m_heroPrefabs;
 		}
 	}
 }

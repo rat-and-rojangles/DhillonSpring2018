@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class LooseFollow2D : MonoBehaviour {
 
-	public Transform target;
 	public float speed;
 	public Vector2 offset;
 	private Vector2 derivedOffset {
@@ -12,7 +11,7 @@ public class LooseFollow2D : MonoBehaviour {
 	}
 
 	void Update () {
-		Vector3 position = Vector3.Lerp (transform.position, target.position + (Vector3)derivedOffset, speed * Time.deltaTime);
+		Vector3 position = Vector3.Lerp (transform.position, Game.current.heroCharacter.transform.position + (Vector3)derivedOffset, speed * Time.deltaTime);
 		position.z = transform.position.z;
 		transform.position = position;
 	}
