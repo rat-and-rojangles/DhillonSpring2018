@@ -5,7 +5,7 @@ using UnityEngine;
 public class HeroInstantiator : MonoBehaviour {
 
 	public HeroCharacter InstantiateHero () {
-		GameObject clone = Instantiate (ImportantAssets.heroPrefabs [ImportantAssets.characterPreferences.heroModelIndex]);
+		GameObject clone = Instantiate (ImportantAssets.characterPreferences.heroPrefab);
 		clone.transform.position = transform.position;
 		return clone.GetComponent<HeroCharacter> ();
 	}
