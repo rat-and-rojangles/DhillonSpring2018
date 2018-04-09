@@ -23,20 +23,22 @@ public class CharacterPreferences : ScriptableObject {
 		}
 	}
 
-	public int shirtLogoIndex = 0;
+
+
+	public Texture2D shirtIcon = null;
 	/// <summary>
 	/// Texture2D for the shirt, based on icon and color.
 	/// </summary>
 	public Texture2D shirtTexture {
 		get {
-			return null;
-			if (!ImportantAssets.heroPrefabs.ValidIndex (heroModelIndex)) {
-				Debug.LogWarning ("Invalid hero prefab index. Loading default hero.");
-				// return ImportantAssets.heroPrefabs [0];
+			Texture2D coloredShirt = TextureCompositor.BlendWithColor (ImportantAssets.baseTextureShirt, ImportantAssets.characterPreferences.favoriteColor);
+			if (shirtIcon == null) {
+				Debug.LogWarning ("Shirt icon is null. No icon will be shown.");
 			}
 			else {
-				// return ImportantAssets.heroPrefabs [heroModelIndex];
+				coloredShirt = TextureCompositor.CombineTextures (coloredShirt, shirtIcon);
 			}
+			return coloredShirt;
 		}
 	}
 

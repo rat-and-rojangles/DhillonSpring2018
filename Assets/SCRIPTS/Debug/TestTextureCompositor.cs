@@ -12,7 +12,7 @@ public class TestTextureCompositor : MonoBehaviour {
 	public Texture2D textureLower;
 
 	public void Combine () {
-		output.sprite = TextureCompositor.Texture2DToSprite (TextureCompositor.CombineTextures (inputUpper.sprite.texture, inputLower.sprite.texture));
+		output.sprite = TextureCompositor.Texture2DToSprite (TextureCompositor.CombineTextures (inputLower.sprite.texture, inputUpper.sprite.texture));
 	}
 
 	public void UpdateImages () {

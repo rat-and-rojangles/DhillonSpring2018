@@ -10,7 +10,7 @@ public static class TextureCompositor {
 	/// <summary>
 	/// Blend one texture on top of another texture, using transparency.
 	/// </summary>
-	public static Texture2D CombineTextures (Texture2D upper, Texture2D lower) {
+	public static Texture2D CombineTextures (Texture2D lower, Texture2D upper) {
 		if (upper == null || lower == null) {       // null
 			throw new System.Exception ("The textures should not be null.");
 		}

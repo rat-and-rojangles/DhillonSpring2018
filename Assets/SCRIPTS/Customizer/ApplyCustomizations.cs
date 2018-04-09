@@ -4,15 +4,29 @@ using UnityEngine;
 
 public class ApplyCustomizations : MonoBehaviour {
 
-	public float hue;
+	[SerializeField]
+	private UnityEngine.UI.Slider slider;
 	public Renderer demoShirt;
 
-	[SerializeField]
-	private Texture2D baseTexture;
+	public void UpdateShirt () {
+		ImportantAssets.characterPreferences.favoriteColorHue = slider.value;
+		demoShirt.materials [0].mainTexture = ImportantAssets.characterPreferences.shirtTexture;
+	}
 
-	public void ApplyShirt (Texture2D shirtIcon) {
-		ImportantAssets.characterPreferences.favoriteColorHue = hue;
-		Texture2D coloredShirt = TextureCompositor.BlendWithColor (baseTexture, ImportantAssets.characterPreferences.favoriteColor);
-		demoShirt.materials [0].mainTexture = TextureCompositor.CombineTextures (coloredShirt, shirtIcon);
+	public void SetPreferredShirtIcon (Texture2D newShirtIcon) {
+		ImportantAssets.characterPreferences.shirtIcon = newShirtIcon;
+	}
+
+	void Update () {
+		if (Input.GetMouseButtonUp (0)) {
+			StopAllCoroutines ();
+			StartCoroutine (DelayThenUpdateShirt ());
+		}
+	}
+
+	private IEnumerator DelayThenUpdateShirt () {
+		yield return new WaitForEndOfFrame ();
+		yield return new WaitForEndOfFrame ();
+		UpdateShirt ();
 	}
 }

@@ -2,10 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// LIST OF ALL REQUIRED RESOURCE NAMES - AND TYPES
+/// 
+/// BaseTextureShirt - Texture2D
+/// HighlightMaterial - Material
+/// ShortMessage - prefab
+/// SoundLibrary - SoundLibrary
+/// HealthCategoryResources - HealthCategoryResources
+/// CharacterPreferences - CharacterPreferences
+/// HeroPrefabs - PrefabArray
+/// 
+
 /// <summary>
 /// Bridge to various assets in Resources to cut down on cluttered references in the editor.
 /// </summary>
 public static class ImportantAssets {
+	private static Texture2D m_baseTextureShirt = null;
+	public static Texture2D baseTextureShirt {
+		get {
+			if (m_baseTextureShirt == null) {
+				m_baseTextureShirt = Resources.Load<Texture2D> ("BaseTextureShirt");
+			}
+			return m_baseTextureShirt;
+		}
+	}
 	private static Material m_highlightMaterial = null;
 	public static Material highlightMaterial {
 		get {
@@ -58,9 +78,8 @@ public static class ImportantAssets {
 
 	private static GameObject [] m_heroPrefabs = null;
 	/// <summary>
-	/// All prefabs for the night character. 
+	/// All prefabs for the night character. Must be complete and functional.
 	/// </summary>
-	/// <returns></returns>
 	public static GameObject [] heroPrefabs {
 		get {
 			if (m_heroPrefabs == null) {
