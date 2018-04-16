@@ -10,14 +10,15 @@ public class OnScreenConsole : MonoBehaviour {
 	private static OnScreenConsole current {
 		get {
 			if (m_current == null) {
-				Createcurrent ();
+				CreateCurrent ();
 			}
 			return m_current;
 		}
 	}
 
-	private static void Createcurrent () {
-		GameObject empty = new GameObject ("On Screen Console");
+	private static void CreateCurrent () {
+		GameObject empty = new GameObject ();
+		empty.name = "On Screen Console";
 		m_current = empty.AddComponent<OnScreenConsole> ();
 		m_current.m_textColor = Color.white;
 	}
@@ -44,7 +45,8 @@ public class OnScreenConsole : MonoBehaviour {
 	/// Write a persistent message to the screen.
 	/// </summary>
 	public static void Log (object message) {
-		current.text += message.ToString () + "\n";
+		string messagePrime = message == null ? "null" : message.ToString ();
+		current.text += messagePrime.ToString () + "\n";
 		if (current.text.Length > 1000) {
 			current.text = current.text.Substring (current.text.Length - 1000);
 		}
