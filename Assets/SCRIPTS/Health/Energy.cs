@@ -91,6 +91,15 @@ public class Energy : MonoBehaviour {
 			string message = increaseAmount < 0f ? "-" : "+";
 			message += Mathf.Abs (increaseAmount).ToString ();
 			ShortMessageGenerator.current.GenerateShortMessage (message, healthCategory);
+			if (healthCategory == HealthCategory.Social) {
+				ImportantAssets.miscData.netPsychosocialScoreChange += increaseAmount;
+			}
+			else if (healthCategory == HealthCategory.Diet) {
+				ImportantAssets.miscData.netDietScoreChange += increaseAmount;
+			}
+			else if (healthCategory == HealthCategory.Exercise) {
+				ImportantAssets.miscData.netExertionScoreChange += increaseAmount;
+			}
 		}
 	}
 }

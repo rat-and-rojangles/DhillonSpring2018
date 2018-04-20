@@ -10,8 +10,8 @@ public class HeroAnimationController : MonoBehaviour {
 	[SerializeField]
 	private Animator animator;
 
-	public Quaternion facingRight;
-	public Quaternion facingLeft;
+	private Quaternion facingRight;
+	private Quaternion facingLeft;
 
 	private float velocityDeadZone = 0.01f;
 
@@ -31,10 +31,6 @@ public class HeroAnimationController : MonoBehaviour {
 	}
 
 	public void Update () {
-		// animator.SetFloat ("VelocityX", hero.velocity.x);
-		// animator.SetFloat ("VelocityY", hero.velocity.y);
-		// animator.SetBool ("Grounded", hero.grounded);
-		OnScreenConsole.Log (hero.gun.trinaryTiltDirection);
 		int gunDirection = hero.gun.trinaryTiltDirection.Sign ();
 		int moveDirection = hero.frameAction.moveDirection.Sign ();
 		if (gunDirection > 0) {

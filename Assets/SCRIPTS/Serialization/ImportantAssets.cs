@@ -76,6 +76,16 @@ public static class ImportantAssets {
 		}
 	}
 
+	private static MiscData m_miscData = null;
+	public static MiscData miscData {
+		get {
+			if (m_miscData == null) {
+				m_miscData = Resources.Load<MiscData> ("MiscData");
+			}
+			return m_miscData;
+		}
+	}
+
 	private static GameObject [] m_heroPrefabs = null;
 	/// <summary>
 	/// All prefabs for the night character. Must be complete and functional.

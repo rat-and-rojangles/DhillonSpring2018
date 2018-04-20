@@ -7,6 +7,11 @@ using UnityEngine;
 /// </summary>
 public class CharacterPreferences : ScriptableObject {
 
+	/// <summary>
+	/// Name of the kid playing the game.
+	/// </summary>
+	public string playerName;
+
 	public int heroModelIndex = 0;
 	/// <summary>
 	/// Prefab for night hero, based on customization.
@@ -22,8 +27,6 @@ public class CharacterPreferences : ScriptableObject {
 			}
 		}
 	}
-
-
 
 	public Texture2D shirtIcon = null;
 	/// <summary>
