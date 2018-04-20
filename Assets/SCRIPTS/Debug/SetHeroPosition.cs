@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SetPosition : MonoBehaviour {
+public class SetHeroPosition : MonoBehaviour {
 
-	public Transform target;
 	public Vector3 position;
 
 	public void ApplyPosition () {
-		target.position = position;
+		Game.current.heroCharacter.transform.position = position;
 	}
 }

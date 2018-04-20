@@ -10,6 +10,26 @@ public class PlayerGun : MonoBehaviour {
 
 	private Vector2 camLead = Vector2.zero;
 
+	public float deadZoneDegreeRadius = 25f;
+	/// <summary>
+	/// Returns 1 if pointed right, -1 if left, and 0 if in dead zone (straight up or down)
+	/// </summary>
+	/// <returns></returns>
+	public int trinaryTiltDirection {
+		get {
+			float degreez = Utility.NormalizeDegrees (transform.rotation.eulerAngles.z);
+			if (degreez > 270 + deadZoneDegreeRadius || degreez.Between (0f, 90f - deadZoneDegreeRadius)) {
+				return 1;
+			}
+			else if (degreez.Between (90f + deadZoneDegreeRadius, 270f - deadZoneDegreeRadius)) {
+				return -1;
+			}
+			else {
+				return 0;
+			}
+		}
+	}
+
 	[SerializeField]
 	private GameObject bulletPrefab;
 	public void Shoot () {

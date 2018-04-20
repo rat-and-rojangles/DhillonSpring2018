@@ -27,4 +27,44 @@ public static class Extensions {
 		float angleRadians = angleDegrees * Mathf.Deg2Rad;
 		vector.Set (Mathf.Cos (angleRadians) * vector.x - Mathf.Sin (angleRadians) * vector.y, Mathf.Sin (angleRadians) * vector.x + Mathf.Cos (angleRadians) * vector.y);
 	}
+
+	/// <summary>
+	/// Returns the sign of the float as -1, 0, or 1.
+	/// </summary>
+	public static int Sign (this float f) {
+		if (f == 0f) {
+			return 0;
+		}
+		else if (f > 0f) {
+			return 1;
+		}
+		else {
+			return -1;
+		}
+	}
+	/// <summary>
+	/// Returns the sign of the int as -1, 0, or 1.
+	/// </summary>
+	public static int Sign (this int i) {
+		if (i == 0) {
+			return 0;
+		}
+		else if (i > 0) {
+			return 1;
+		}
+		else {
+			return -1;
+		}
+	}
+	/// <summary>
+	/// Is the value between the min and max? (inclusive)
+	/// </summary>
+	public static bool Between (this float f, float min, float max) {
+		if (min > max) {
+			return false;
+		}
+		else {
+			return f >= min && f <= max;
+		}
+	}
 }

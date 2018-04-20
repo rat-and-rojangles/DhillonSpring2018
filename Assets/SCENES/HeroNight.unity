@@ -748,9 +748,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 469107365}
-  - component: {fileID: 469107368}
   - component: {fileID: 469107367}
   - component: {fileID: 469107366}
+  - component: {fileID: 469107368}
   m_Layer: 0
   m_Name: Keys
   m_TagString: Untagged
@@ -2647,8 +2647,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 2078131768}
-  - component: {fileID: 2078131769}
   - component: {fileID: 2078131770}
+  - component: {fileID: 2078131769}
   m_Layer: 0
   m_Name: misc
   m_TagString: Untagged
@@ -2680,8 +2680,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7040a20ac9d4394da35261e23be438d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  position: {x: 0, y: 2, z: 0}
+  position: {x: 0, y: 4.8, z: 0}
 --- !u!114 &2078131770
 MonoBehaviour:
   m_ObjectHideFlags: 0

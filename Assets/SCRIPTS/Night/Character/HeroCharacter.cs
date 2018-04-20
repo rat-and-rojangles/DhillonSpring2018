@@ -38,6 +38,9 @@ public class HeroCharacter : MonoBehaviour {
 
 	private Vector2 groundCheckPointLeftLocal;
 	private Vector2 groundCheckPointRightLocal;
+	/// <summary>
+	/// Is the hero in contact with the ground?
+	/// </summary>
 	public bool grounded {
 		get {
 			Collider2D leftCollision = Physics2D.OverlapPoint (transform.TransformPoint (groundCheckPointLeftLocal), groundMask);

@@ -62,4 +62,18 @@ public static class Utility {
 		}
 		return results.ToArray ();
 	}
+
+	/// <summary>
+	/// Wraps a value between 0 (inc) and 360 (exc)
+	/// </summary>
+	public static float NormalizeDegrees (float degreeValue) {
+		float temp = degreeValue;
+		while (temp < 0f) {
+			temp += 360f;
+		}
+		while (temp >= 360f) {
+			temp -= 360f;
+		}
+		return temp;
+	}
 }

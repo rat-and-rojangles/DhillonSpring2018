@@ -320,7 +320,7 @@ MonoBehaviour:
   stunTime: 1
   groundMask:
     serializedVersion: 2
-    m_Bits: 4294963455
+    m_Bits: 4294955263
   m_gun: {fileID: 114980165952825128}
   meshRenderer: {fileID: 23308270451240396}
   runSpeed: 10
@@ -341,6 +341,7 @@ MonoBehaviour:
   recoilScale: 3
   leadMinDistance: 4
   leadMaxDistance: 10
+  deadZoneDegreeRadius: 20
   bulletPrefab: {fileID: 1283103055687540, guid: 147cab071d3eb1042861ee26c7fa40c8,
     type: 2}
 --- !u!212 &212962762582246472

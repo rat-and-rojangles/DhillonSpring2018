@@ -11,5 +11,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c9b81f840a6eba4f85921bd825d32c4, type: 3}
   m_Name: CharacterPreferences
   m_EditorClassIdentifier: 
-  heroModelIndex: 0
+  heroModelIndex: 1
+  shirtIcon: {fileID: 0}
   favoriteColorHue: 0
