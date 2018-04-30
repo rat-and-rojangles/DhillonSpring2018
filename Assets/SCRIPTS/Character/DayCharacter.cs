@@ -17,6 +17,11 @@ public class DayCharacter : MonoBehaviour {
 
 	private PlayerSprint playerSprint;
 
+	/// <summary>
+	/// Can the user control this character?
+	/// </summary>
+	public bool controllable = true;
+
 	private Energy m_energy;
 	/// <summary>
 	/// Dhillon's energy control
@@ -46,22 +51,35 @@ public class DayCharacter : MonoBehaviour {
 	}
 
 	void Update () {
-		Vector2 inputVector = new Vector2 (Input.GetAxis ("Horizontal"), Input.GetAxis ("Vertical"));
-		if (previousInputVector.magnitude > 0.1f && Vector2.Angle (previousInputVector, inputVector) < 90f) {
-			timeRunning += Time.deltaTime;
-		}
-		else {
-			timeRunning = 0f;
-		}
-		gravity += Physics.gravity * gravityScale * Time.deltaTime;
-		inputVector = ModifyInputVectorForSprint (inputVector);
-		characterController.Move (((transform.forward * inputVector.y + transform.right * inputVector.x) * GetRunSpeedMultiplier () + gravity) * Time.deltaTime);
-		if (characterController.isGrounded) {
-			gravity = Vector3.zero;
-			if (Input.GetButtonDown ("Jump")) {
-				gravity = Vector3.up * jumpStrength;
+		if (controllable) {
+			Vector2 inputVector = new Vector2 (Input.GetAxis ("Horizontal"), Input.GetAxis ("Vertical"));
+			if (previousInputVector.magnitude > 0.1f && Vector2.Angle (previousInputVector, inputVector) < 90f) {
+				timeRunning += Time.deltaTime;
 			}
+			else {
+				timeRunning = 0f;
+			}
+			gravity += Physics.gravity * gravityScale * Time.deltaTime;
+			inputVector = ModifyInputVectorForSprint (inputVector);
+			characterController.Move (((transform.forward * inputVector.y + transform.right * inputVector.x) * GetRunSpeedMultiplier () + gravity) * Time.deltaTime);
+			if (characterController.isGrounded) {
+				gravity = Vector3.zero;
+				if (Input.GetButtonDown ("Jump")) {
+					gravity = Vector3.up * jumpStrength;
+				}
+			}
+			previousInputVector = inputVector;
 		}
-		previousInputVector = inputVector;
+	}
+
+	[SerializeField]
+	private CamControlMouse camControlMouse;
+	public void SetFrontView (bool value) {
+		controllable = !value;
+		camControlMouse.SetFrontPerspective (value);
+	}
+
+	public void SetControllable (bool value) {
+		controllable = value;
 	}
 }

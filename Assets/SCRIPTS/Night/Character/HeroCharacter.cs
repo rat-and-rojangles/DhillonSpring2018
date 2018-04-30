@@ -83,10 +83,6 @@ public class HeroCharacter : MonoBehaviour {
 		get { return rigidbody2D.velocity; }
 	}
 
-	public bool dead {
-		get { return !enabled; }
-	}
-
 	public FrameAction frameAction;
 
 	private void UpdateFrameAction () {
@@ -95,6 +91,7 @@ public class HeroCharacter : MonoBehaviour {
 	}
 
 	void Start () {
+		Energy.current.energyRatio = PlayerPrefs.GetFloat ("StartingEnergy", 0.5f);
 		frameAction = FrameAction.NEUTRAL;
 		collider = GetComponent<BoxCollider2D> ();
 

@@ -22,7 +22,15 @@ public class Backpack : OffscreenUIElement, Initializable {
 
 	private bool disappearing = false;
 
-	private CollectibleItem [] ownedItems = new CollectibleItem [5];
+	private CollectibleItem [] m_ownedItems = null;
+	private CollectibleItem [] ownedItems {
+		get {
+			if (m_ownedItems == null) {
+				m_ownedItems = new CollectibleItem [backpackButtons.Length];
+			}
+			return m_ownedItems;
+		}
+	}
 	[SerializeField]
 	private BackpackButton [] backpackButtons;
 
@@ -64,7 +72,8 @@ public class Backpack : OffscreenUIElement, Initializable {
 		else {
 			item.gameObject.SetActive (false);
 			ownedItems [desiredIndex] = item;
-			ShortMessageGenerator.current.GenerateShortMessage ("Collected!");
+			// ShortMessageGenerator.current.GenerateShortMessage ("Collected!");
+			SoundPlayer.PlayOneShot (ImportantAssets.soundLibrary.powerup);
 			UpdateButtons ();
 		}
 	}

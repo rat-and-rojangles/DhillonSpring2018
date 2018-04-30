@@ -1112,6 +1112,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4058173470706672}
   - component: {fileID: 212988474831761868}
+  - component: {fileID: 114678725647286444}
   m_Layer: 13
   m_Name: Target
   m_TagString: Untagged
@@ -2987,8 +2988,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 95983983586053018}
-  facingRight: {x: 0, y: 0, z: 0, w: 1}
-  facingLeft: {x: 0, y: 1, z: 0, w: -0.00000004371139}
+--- !u!114 &114678725647286444
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1827281175799120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abaa0707dea236543bd245f84631f215, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!137 &137031180417870260
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

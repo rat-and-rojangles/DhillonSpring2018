@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Energy : MonoBehaviour {
+public class Energy : MonoBehaviour, Initializable {
 
 	private static Energy m_current;
 	/// <summary>
@@ -12,9 +12,6 @@ public class Energy : MonoBehaviour {
 		get { return m_current; }
 	}
 
-	void Awake () {
-		m_current = this;
-	}
 	void OnDestroy () {
 		m_current = null;
 	}
@@ -54,10 +51,14 @@ public class Energy : MonoBehaviour {
 		get {
 			return currentEnergy / maxEnergy;
 		}
+		set {
+			currentEnergy = maxEnergy * value;
+		}
 	}
 
-	void Start () {
+	public void Initialize () {
 		m_currentEnergy = maxEnergy * startingEnergyRatio;
+		m_current = this;
 	}
 
 	void Update () {
@@ -88,6 +89,7 @@ public class Energy : MonoBehaviour {
 	public void IncreaseEnergy (float increaseAmount, HealthCategory healthCategory) {
 		currentEnergy += increaseAmount;
 		if (healthCategory != HealthCategory.Silent) {
+			SoundPlayer.PlayOneShot (increaseAmount > 0f ? ImportantAssets.soundLibrary.jump1 : ImportantAssets.soundLibrary.oof);
 			string message = increaseAmount < 0f ? "-" : "+";
 			message += Mathf.Abs (increaseAmount).ToString ();
 			ShortMessageGenerator.current.GenerateShortMessage (message, healthCategory);

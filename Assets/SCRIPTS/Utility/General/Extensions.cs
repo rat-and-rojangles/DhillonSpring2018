@@ -67,4 +67,26 @@ public static class Extensions {
 			return f >= min && f <= max;
 		}
 	}
+
+
+	private static float RandomWithinDimension (float size) {
+		return Random.Range (-size * 0.5f, size * 0.5f);
+	}
+	/// <summary>
+	/// Returns a random point inside the box collider, in world position.
+	/// </summary>
+	public static Vector3 RandomPointWithin (this BoxCollider boxCollider) {
+		Vector3 right = boxCollider.transform.right * boxCollider.transform.localScale.x * RandomWithinDimension (boxCollider.size.x);
+		Vector3 up = boxCollider.transform.up * boxCollider.transform.localScale.y * RandomWithinDimension (boxCollider.size.y);
+		Vector3 forward = boxCollider.transform.forward * boxCollider.transform.localScale.z * RandomWithinDimension (boxCollider.size.z);
+		return boxCollider.transform.position + boxCollider.center + right + up + forward;
+	}
+
+	/// <summary>
+	/// Does the layer mask contain the specified layer?
+	/// </summary>
+	public static bool Contains (this LayerMask layerMask, int layer) {
+		return layerMask == (layerMask | (1 << layer));
+
+	}
 }

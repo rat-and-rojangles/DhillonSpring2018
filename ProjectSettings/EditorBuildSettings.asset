@@ -6,11 +6,20 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/SCENES/Menu.unity
-    guid: 64336d2636868ff428088276128fcb12
+    path: Assets/SCENES/Sequence/Tagline.unity
+    guid: 606f8bd22e3424248927922f298186a4
+  - enabled: 1
+    path: Assets/SCENES/Placeholder/HumanCustomizer.unity
+    guid: 9004bb9964922234ca7d013b579f4102
+  - enabled: 1
+    path: Assets/SCENES/Sequence/HeroIntro.unity
+    guid: fffa7511c75786e48b237df0a94e4478
   - enabled: 1
     path: Assets/SCENES/HomeScene.unity
     guid: febe305ee1577e24db3b989714878a37
   - enabled: 1
     path: Assets/SCENES/HeroNight.unity
     guid: c73d519cb12ac184da9669ea3552d49c
+  - enabled: 1
+    path: Assets/SCENES/Sequence/MainMenu.unity
+    guid: 141b11ff224228e47947541bcbb497d5

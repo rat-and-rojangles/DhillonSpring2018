@@ -9,7 +9,16 @@ public class ApplyCustomizations : MonoBehaviour {
 	public Renderer demoShirt;
 
 	public void UpdateShirt () {
-		ImportantAssets.characterPreferences.favoriteColorHue = slider.value;
+		if (slider.value < 0f) {
+			ImportantAssets.characterPreferences.favoriteColor = Color.black;
+		}
+		else if (slider.value > 1f) {
+			ImportantAssets.characterPreferences.favoriteColor = Color.white;
+		}
+		else {
+			ImportantAssets.characterPreferences.favoriteColor = new ColorHSV (slider.value, 1f, 1f, 1f);
+
+		}
 		demoShirt.materials [0].mainTexture = ImportantAssets.characterPreferences.shirtTexture;
 	}
 

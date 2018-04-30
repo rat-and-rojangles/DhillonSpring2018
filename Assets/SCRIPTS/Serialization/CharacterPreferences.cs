@@ -12,6 +12,8 @@ public class CharacterPreferences : ScriptableObject {
 	/// </summary>
 	public string playerName;
 
+	public int highScore;
+
 	public int heroModelIndex = 0;
 	/// <summary>
 	/// Prefab for night hero, based on customization.
@@ -45,8 +47,5 @@ public class CharacterPreferences : ScriptableObject {
 		}
 	}
 
-	public float favoriteColorHue;
-	public Color favoriteColor {
-		get { return new ColorHSV (favoriteColorHue, 1f, 1f, 1f); }
-	}
+	public Color favoriteColor;
 }

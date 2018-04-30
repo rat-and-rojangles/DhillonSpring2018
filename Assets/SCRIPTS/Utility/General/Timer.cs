@@ -27,7 +27,7 @@ public class Timer {
 	}
 	public Timer (float duration) {
 		this.duration = duration;
-		m_complete = false;
+		m_complete = duration <= 0f;
 		elapsedTime = 0f;
 	}
 
